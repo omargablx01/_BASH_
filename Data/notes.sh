@@ -81,3 +81,27 @@ echo $-
 #? ------------------------------------- 04 -------------------------------------
 # Video 4 => https://www.youtube.com/watch?v=JdR-8lLiwyo&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=4
 #? ------------------------------------- 04 -------------------------------------
+# "" => Double Quotes >> بتفهم المتغير الي جوها 
+var="Double Quotes"
+echo "Hello $var" # output > Hello Double Quotes
+
+# \$ >> علشان ميفهمش ان دا متغير لازم نستخدم ال \ قبل ال $ علشان يبفهم ان دا مش متغير
+# دا بالنسبة لل ""
+echo "$0.00" # output > ./bash.sh
+echo "\$5.00" # output > $5.00
+
+# '' => Single Quotes >> مش بتفهم المتغير الي جوها بتعتبر كله نص واحد
+var2="Single Quotes"
+echo 'Hello $var2' # output > Hello $var2
+
+# امال لو بنستخدم '' الامر بيختلف بيفهم ان كل الي مكتوب جوها نص واحد
+echo '$5.00' # output > $5.00
+
+# `` => Backticks => تستخدم لتطبيق امر معين وهذه طريقه قديمه
+echo "Date : `date`" # دي الطريقه القديمه => Date : Thu, Apr 16, 2026 11:10:19 am
+
+echo "Date : $(date)" # دي الطريقه الجديده => Date : Thu, Apr 16, 2026 11:10:19 am
+
+#? ------------------------------------- 05 -------------------------------------
+# Video 5 => https://www.youtube.com/watch?v=ex60OTFAfm0&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=5
+#? ------------------------------------- 05 -------------------------------------

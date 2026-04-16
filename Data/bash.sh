@@ -1,5 +1,6 @@
 #!/bin/bash
 #!/bin/bash  >> لازم يكون اول سطر في الملف علشان الجهاز يفهم ان دا ملف bash
+# t~ cd "D:\OMAR\Git_Github\_BASH_\Data"
 # ? ------------------------------------- 01 -------------------------------------
 # * Bash Script Course => 50 Video ( https://www.youtube.com/playlist?list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd => Osama Sbeih )
 # ? ------------------------------------- 01 -------------------------------------
@@ -50,5 +51,11 @@
 #? ------------------------------------- 04 -------------------------------------
 # Video 4 => https://www.youtube.com/watch?v=JdR-8lLiwyo&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=4
 #? ------------------------------------- 04 -------------------------------------
-echo "\$5.00"
-echo '$5.00'
+# echo "\$5.00"
+# echo '$5.00'
+# echo "Date : `date`"
+# echo "Date This Day : $(date)"
+# echo "My Place File : $(pwd)"
+#? ------------------------------------- 05 -------------------------------------
+# Video 5 => https://www.youtube.com/watch?v=ex60OTFAfm0&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=5
+#? ------------------------------------- 05 -------------------------------------
