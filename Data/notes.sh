@@ -84,24 +84,149 @@ echo $-
 # "" => Double Quotes >> بتفهم المتغير الي جوها 
 var="Double Quotes"
 echo "Hello $var" # output > Hello Double Quotes
-
+#* ------------------------------
 # \$ >> علشان ميفهمش ان دا متغير لازم نستخدم ال \ قبل ال $ علشان يبفهم ان دا مش متغير
 # دا بالنسبة لل ""
 echo "$0.00" # output > ./bash.sh
 echo "\$5.00" # output > $5.00
-
+#* ------------------------------
 # '' => Single Quotes >> مش بتفهم المتغير الي جوها بتعتبر كله نص واحد
 var2="Single Quotes"
 echo 'Hello $var2' # output > Hello $var2
-
+#* ------------------------------
 # امال لو بنستخدم '' الامر بيختلف بيفهم ان كل الي مكتوب جوها نص واحد
 echo '$5.00' # output > $5.00
-
+#* ------------------------------
 # `` => Backticks => تستخدم لتطبيق امر معين وهذه طريقه قديمه
 echo "Date : `date`" # دي الطريقه القديمه => Date : Thu, Apr 16, 2026 11:10:19 am
-
+#* ------------------------------
 echo "Date : $(date)" # دي الطريقه الجديده => Date : Thu, Apr 16, 2026 11:10:19 am
-
 #? ------------------------------------- 05 -------------------------------------
 # Video 5 => https://www.youtube.com/watch?v=ex60OTFAfm0&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=5
 #? ------------------------------------- 05 -------------------------------------
+# -p: لعرض السؤال (Prompt).
+# -s: للأمان (يخفي ما تكتبه).
+# -t: يحدد عدد ثوانٍ للانتظار، إذا لم يتم الإدخال ينتهي الأمر تلقائياً.
+# -d: (Delimiter) لإنهاء الإدخال عند حرف معين بدلاً من زر Enter.
+# -N: (Number exact) مثل -n ولكن لا يتوقف إلا بعد استلام العدد المطلوب "بالضبط".
+# -n: (Number) لإنهاء الإدخال تلقائياً بعد كتابة عدد محدد من الحروف
+# -r: يحمي الـ \ (مثل مسارات ويندوز).
+# -e: يجعلك "ملك" السطر (تحكم بالأسهم و Tab).
+# -u: (Unit/FD) للقراءة من "ملف" أو Descriptor معين بدلاً من لوحة المفاتيح.
+# -i: (Initial) لوضع نص افتراضي (Default) داخل الخانة (يجب استخدامه مع -e).
+# -a: (Array) لتخزين الكلمات المدخلة داخل "مصفوفة" (Array) بدلاً من متغير واحد.
+#* ------------------------------
+# read >> عباره عن input بتاخده من المستخدم
+# دي الطريقه التقليدية ل اخذ ال input من المستخدم
+echo -n "Enter Name : "
+read name
+echo "Welcome $name"
+#* ------------------------------
+# read -p >> يعني تقدر تكتب رساله جنب ال input بدل استخدام echo الي فوق
+read -p "Enter Name : " name2
+echo "Welcome $name2"
+#* ------------------------------
+# read -s >> تستخدم لاخفاء ال input
+read -sp "Enter Passwd : " passwd
+echo "Welcome $passwd"
+#* ------------------------------
+# echo -e "\n etc.. ">> في مشكله هتقابلنا هنا وهي لمه يجي يطبع رساله ال echo هتطبع جنب ال input الي حطتيه 
+# علشان نتفاده المشكله دي نعمل التالي
+read -sp "Enter Passwd : " passwd
+echo -e "\nWelcome $passwd"
+#* ------------------------------
+# او باستخدام ال printf
+read -sp "Enter Passwd : " passwd
+printf "\nWelcome %s" "$passwd"
+#* ------------------------------
+# read -t 4 >> تستخدم بهذا الشكل لتحديد وقت وضع ال Input
+# يعني لو ال 4 ثواني خلصوا كدا خلاص مش هيستقبل input منك
+read -t 4 -sp ": " name
+echo -e "\n ${name}"
+#* ------------------------------
+# read -d "." >> تستخدم لتحديد كلمه معينه اول ما تكتبها في ال input هيقف ويتسجل علي كدا 
+read -d "." name
+echo -e "\nWelcome ${name}"
+#* ------------------------------
+# لعرض رساله مع ال delim بيكون بهذا الشكل
+read -d "." -p "Enter Name (end with .): " name
+echo -e "\nWelcome ${name}"
+#* ------------------------------
+# read -N 9 >> تستخدم لوضع حد لحروف الادخال يعني لازم 9 حروف كدا مينفعش اقل او اكثر
+read -N 9 -p "Enter Name : " name
+echo -e "\nWelcome ${name}"
+#* ------------------------------
+# read -n 9 >> تستقبل من 9 و اقل يعني رقم 9 دا حد اقصي للادخال
+# يستقبل من 1 الي 9
+read -n 9 -p "Enter Name : " name
+echo -e "\nWelcome ${name}"
+#* ------------------------------
+# read -e >> بيخليك تقدر تمسح وتعدل الكلام الخظاء الي في ال input وتقدر تتحرك يميناً ويساراً داخل النص
+# مكن للمستخدم الضغط على زر Tab لتكملة اسم الملف أو المجلد تلقائياً، تماماً كما نفعل في Terminal
+# تسمح للمستخدم بالضغط على السهم لأعلى لاسترجاع آخر نص قام بكتابته في نفس جلسة
+read -e -p "Enter Name : " name
+echo -e "\nWelcome ${name}"
+#* ------------------------------
+# read -r >>  لقراءة النص "خام" كما هو وتجاهل معاني الـ \
+read -r -p "Enter Name: " name
+# لو المستخدم كتب: Hello \n World
+echo "Welcome ${name}"
+#* ------------------------------
+# read -i >> لوضع قيمه افتراضيه مثل كلمه admin ولازم نستخدم معاها -e
+read -re -p "Enter Username: " -i "admin" username
+echo "The username is: $username"
+#* ------------------------------
+# read -a >> كدا الادخال بتاعك اصبح array يعني اصبح list in python
+read -p "Enter your favorite fruits (separated by space): " -a fruits
+echo "The first fruit is: ${fruits[0]}"
+echo "ALl fruit: ${fruits[@]}"
+echo "Total fruits entered: ${#fruits[@]}"
+#* ------------------------------
+# IFS="," >> دي معنها ان افصل بين الادخالات من خلال الفصله لان الافتراضي هو " " المسطره
+# تغيير الـ IFS (اختصار لـ Internal Field Separator) هو الطريقة التي تخبر بها Bash: "لا تقسم الكلام عند المسافة، بل قسمه عند هذه العلامة".
+IFS="," read -p "Enter items (split by comma): " -a my_items
+echo "First item: ${my_items[0]}"
+echo "Second item: ${my_items[1]}"
+#? ------------------------------------- 06 -------------------------------------
+# Video 6 => https://www.youtube.com/watch?v=pBrQl6muY4g&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=6
+
+#                          >>>>>>>>> Arithmetic Operators Part 1 <<<<<<<<<<
+#? ------------------------------------- 06 -------------------------------------
+# $((5+4)) >> هي طريقه لعمل اي عملية حسابية
+result=$((5+4))
+echo $result
+#* ------------------------------
+read -p "Enter First Num : " var1
+read -p "Enter Second Num : " var2
+echo "$var1 + $var2 => $((var1+var2))"
+echo "$var1 - $var2 => $((var1-var2))"
+echo "$var1 * $var2 => $((var1*var2))"
+echo "$var1 / $var2 => $((var1/var2))"
+echo "$var1 % $var2 => $((var1%var2))"
+echo "$var1 ** $var2 => $((var1**var2))"
+#* ------------------------------ >> ./bash.sh 5 5
+var1=$1
+var2=$2
+echo "$var1 + $var2 => $((var1+var2))" # 10
+echo "$var1 - $var2 => $((var1-var2))" # 0
+echo "$var1 * $var2 => $((var1*var2))" # 25
+echo "$var1 / $var2 => $((var1/var2))" # 1
+echo "$var1 % $var2 => $((var1%var2))" # 0
+echo "$var1 ** $var2 => $((var1**var2))" # 3125
+#* ------------------------------
+# $((++var1 + 2)) >> بالشكل دا كدا هيضف 1 قبل الجمع ثم يبداء يجمع
+# ال ++ الي في الاول دي معنها ضيف واحد علي قيمه المتغير دا قبل الجمع
+# 5 + 1 = 6 ,, 6 + 2 = 8
+var1=5
+echo $((++var1 + 2))
+#* ------------------------------
+# $((var2++ + 2)) >> دي معنها ضيف 1 بس بعد عمليه الجمع او ضيف واحد بس بعد كدا مش دلوقتي
+# 8 + 2 = 10 ,, 10 + 1 = 11
+var2=8
+echo $((var2++ + 2))
+echo $var2
+#? ------------------------------------- 07 -------------------------------------
+# Video 7 => https://www.youtube.com/watch?v=q6XNA8pS2ew&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=7
+
+#                          >>>>>>>>> Arithmetic Operators Part 2 <<<<<<<<<<
+#? ------------------------------------- 07 -------------------------------------
