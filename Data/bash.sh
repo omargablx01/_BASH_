@@ -143,3 +143,52 @@
 
 #                          >>>>>>>>> Arithmetic Operators Part 2 <<<<<<<<<<
 #? ------------------------------------- 07 -------------------------------------
+# echo $((5 + 3))
+# expr 5 + 3
+#* ------------------------------ >>
+# var1=6
+# var2=3
+# echo "$var1 + $var2 = `expr $var1 + $var2`"
+# echo "$var1 - $var2 = `expr $var1 - $var2`"
+# echo "$var1 * $var2 = `expr $var1 \* $var2`"
+# echo "$var1 / $var2 = `expr $var1 / $var2`"
+# echo "$var1 % $var2 = `expr $var1 % $var2`"
+# echo "$var1 ** $var2 = $((var1 ** var2))"
+#* ------------------------------ >length>
+# varS="Hello"
+# echo `expr length $varS` # => 5
+# echo $(expr length ${varS}) # => 5
+# echo ${#varS} # => 5
+#* ------------------------------
+# varS="Hello Man"
+# echo `expr length $varS` # expr: syntax error: unexpected argument ‘Bash’
+# echo $(expr length ${varS}) # expr: syntax error: unexpected argument ‘Bash’
+# echo ${#varS} # => 9
+# echo `expr length "$varS"` # 9
+# echo $(expr length "${varS}") # 9
+#* ------------------------------ >index>
+# varS="Hello Man"
+# echo `expr index $varS M` # expr: syntax error: unexpected argument ‘M’
+# echo `expr index "$varS" M` # 7
+#* ------------------------------ >substr>
+# varS="HelloMan"
+# echo `expr substr $varS 1 7` # HelloMa
+#* ------------------------------ >>
+# varS="HelloMan"
+# echo "${varS:0:7}"  # HelloMa
+#* ------------------------------ >>
+# varS="HelloMan"
+# echo "$varS" | cut -c 1-7  # HelloMa
+#* ------------------------------ >match>
+# var="Welcome2024"
+# expr match "$var" "Welcome.*"
+#? ------------------------------------- 08 -------------------------------------
+# Video 8 => https://www.youtube.com/watch?v=_hlWUfYMW4Q&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=8
+
+#                          >>>>>>>>> Arithmetic Operators Part 3 <<<<<<<<<<
+#? ------------------------------------- 08 -------------------------------------
+# | = OR >> تستخدم بمعني او العنصر الاول او الثاني
+# يطبع ARG1 إذا كان موجوداً (ليس null) وليس صفراً، وإلا يطبع ARG2.
+expr 0 \| 2
+expr 0 "|" 3
+echo $((0 | 5))

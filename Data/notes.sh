@@ -230,3 +230,62 @@ echo $var2
 
 #                          >>>>>>>>> Arithmetic Operators Part 2 <<<<<<<<<<
 #? ------------------------------------- 07 -------------------------------------
+# expr 5 + 3 >> نستخمد هذا الامر لنه هو الووحيد الي بيتعامل مع العمليات الحسابية
+# expr 5 + 3 == echo $((5 + 3)) دي هي هي نفس دي بالظبط
+expr 5 + 3 # => 8
+echo $((5 + 3)) # => 8
+#* ------------------------------
+# استخدمنا $((var1 ** var2)) بدل `expr $var1 ** $var2` لان فيها مشكله
+var1=6
+var2=3
+echo "$var1 + $var2 = `expr $var1 + $var2`"
+echo "$var1 - $var2 = `expr $var1 - $var2`"
+echo "$var1 * $var2 = `expr $var1 \* $var2`"
+echo "$var1 / $var2 = `expr $var1 / $var2`"
+echo "$var1 % $var2 = `expr $var1 % $var2`"
+echo "$var1 ** $var2 = $((var1 ** var2))"
+#* ------------------------------
+# ${#varS} == $(expr length ${varS}) == `expr length $varS` تستخدم هذه الطريقة لطباعة عدد عناصر المتغير
+varS="Hello"
+echo `expr length $varS` # => 5
+echo $(expr length ${varS}) # => 5
+echo ${#varS} # => 5
+#* ------------------------------ >length>
+# ولكن في حاجه مهمه ان لو كتابنا اي كلمه ثانيه جنب Hello هيحصل error عند او اثنين 
+# ${#varS} ودي بس الي هتشتغل
+# ${#varS} دي اقوي واسرع لانها bultin
+varS="Hello Man"
+echo `expr length $varS` # expr: syntax error: unexpected argument ‘Bash’
+echo $(expr length ${varS}) # expr: syntax error: unexpected argument ‘Bash’
+echo ${#varS} # => 9
+# حل المشكله دي انك تحط المتغير بداخل "$varS" علشان يفهم انهم عنصر واحد مش كل واحده لوحدها
+echo `expr length "$varS"` # 9
+# حل المشكله دي انك تحط المتغير بداخل "${varS}" 
+echo $(expr length "${varS}") # 9
+#* ------------------------------ >index>
+# index >> تستخدم للبحث عن حرف وبيرجعلك برقم ال index بتاعه
+varS="Hello Man"
+echo `expr index $varS M` # expr: syntax error: unexpected argument ‘M’
+# نفس الفكره برضو هنا لازم نحط المتغير بداخل ال Double Quotes "$varname"
+echo `expr index "$varS" M` # 7
+#* ------------------------------ >substr>
+# substr >> تستخدم لقص جزاء معين يعني مثلا من اول ال index 1 قص 7 حروف 
+varS="HelloMan"
+echo `expr substr $varS 1 7` # HelloMa
+#* ------------------------------ >substr>
+# ${varS:0:7} ==>> `expr substr $varS 1 7` الطريقة دي اسهل من الطريقه الاوله بتاعت ال expr
+varS="HelloMan"
+# يبدأ من 0 ويأخذ 7 حروف
+echo "${varS:0:7}"  # النتيجة: HelloMa
+#* ------------------------------ >match>
+# match >> تستخدم للبحث عن كلمه كامله ولازم تكون هي بدايه البحث يعني مش في نص كلمه لا لازم تكون هي البداية
+# هنا استخدمنا .* يعني كلمه Welcome واي حاجه بعدها 
+var="Welcome2024"
+# هل النص يبدأ بكلمة Welcome متبوعة بأي حروف؟
+expr match "$var" "Welcome.*"
+# النتيجة: 11 (لأن الكلمة بالكامل 11 حرف وتطابقت مع النمط)
+#? ------------------------------------- 08 -------------------------------------
+# Video 8 => https://www.youtube.com/watch?v=_hlWUfYMW4Q&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=8
+
+#                          >>>>>>>>> Arithmetic Operators Part 3 <<<<<<<<<<
+#? ------------------------------------- 08 -------------------------------------
