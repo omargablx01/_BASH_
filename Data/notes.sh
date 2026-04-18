@@ -392,8 +392,15 @@ echo $var1
 
 #                          >>>>>>>>> If Statements Part 1 <<<<<<<<<<
 #? ------------------------------------- 11 -------------------------------------
+# -eq: Equal to                      >> ARG1 يساوي ARG2
+# -ne: Not equal to                  >> ARG1 لا يساوي ARG2
+# -gt: Greater than                  >> ARG1 اكبر من ARG2
+# -ge: Greater than or equal to      >> ARG1 اكبر او يساوي ARG2
+# -lt: Less than                     >> ARG1 اصغر من ARG2
+# -le: Less than or equal to         >> ARG1 اصغر او يساوي ARG2
+#* ------------------------------ >>
 # if [ 21 == 21 ] ; then >> لبدايه عمل شرط يكون بهذه الطريقة ولازم نعمل فاصله ; then علشان دا طريقه كتابته
-#* -eq >> .. [ هل 21 تساوي 21 ] لو صح هطيبع الرساله الي انت كتبتها
+#* -eq >> .. [ هل 21 تساوي 21 ] لو صح هيطبع الرساله الي انت كتبتها
 # echo "print This If True" >> لو الشرط تمام و True اطبع الجملة دي
 # fi >> نعكس كلمه if لنهاية الشرط
 # if [ $age -eq 21 ];then echo "True" ; fi >> وهذه طريقه الكتابة علي سطر واحد
@@ -402,24 +409,39 @@ if [ $age -eq 21 ];then
     echo "True"
 fi
 #* ------------------------------ >>
-#* -ne >> .. [ هل 21 لا تساوي 21 ] لو صح هطيبع الرساله الي انت كتبتها
+#* -ne >> .. [ هل 21 لا تساوي 21 ] لو صح هيطبع الرساله الي انت كتبتها
 # if [ $age -ne 21 ];then echo "True" ; fi >> وهذه طريقه الكتابة علي سطر واحد
 age=21
 if [ $age -ne 21 ];then
     echo "Yes $age Not Equal 21"
 fi
 #* ------------------------------ >>
-#* -gt >> .. [ هل 25 اكبر من 21 ] لو صح هطيبع الرساله الي انت كتبتها
+#* -gt >> .. [ هل 25 اكبر من 21 ] لو صح هيطبع الرساله الي انت كتبتها
 # if [ $age -gt 21 ];then echo "True" ; fi >> وهذه طريقه الكتابة علي سطر واحد
 age=25
 if [ $age -gt 21 ];then
     echo "True"
 fi
 #* ------------------------------ >>
-#* -lt >> .. [ هل 25 اصغر من 21 ] لو صح هطيبع الرساله الي انت كتبتها
+#* ------------------------------ >>
+#* -ge >> .. [ هل 25 اكبر او يساوي 21 ] لو صح هيطبع الرساله الي انت كتبتها
+# if [ $age -ge 21 ];then echo "True" ; fi >> وهذه طريقه الكتابة علي سطر واحد
+age=25
+if [ $age -ge 21 ];then
+    echo "True"
+fi
+#* ------------------------------ >>
+#* -lt >> .. [ هل 25 اصغر من 21 ] لو صح هيطبع الرساله الي انت كتبتها
 # if [ $age -lt 21 ];then echo "True" ; fi >> وهذه طريقه الكتابة علي سطر واحد
 age=25
 if [ $age -lt 21 ];then
+    echo "True"
+fi
+#* ------------------------------ >>
+#* -le >> .. [ هل 25 اصغر او يساوي 21 ] لو صح هيطبع الرساله الي انت كتبتها
+# if [ $age -le 21 ];then echo "True" ; fi >> وهذه طريقه الكتابة علي سطر واحد
+age=25
+if [ $age -le 21 ];then
     echo "True"
 fi
 #? ------------------------------------- 12 -------------------------------------
@@ -427,3 +449,260 @@ fi
 
 #                          >>>>>>>>> If Statements Part 2 <<<<<<<<<<
 #? ------------------------------------- 12 -------------------------------------
+# هنا كريقه استخدام ال esle مع ال if
+# لو الشرط الاول تحقق تطبع $age Less Than 25
+# لو لم يتحقق الشرط الاول اطبع $age Greater Than 25
+age=26
+if [ $age -lt 25 ] ; then echo "$age Less Than 25" ; else echo "$age Greater Than 25" ; fi
+#* ------------------------------ >>
+if [ $age -lt 25 ] ; then
+    echo "$age Less Than 25"
+else
+    echo "$age Greater Than 25"
+fi
+#? ------------------------------------- 13 -------------------------------------
+# Video 13 => https://www.youtube.com/watch?v=4ix-A3PC1VA&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=13
+
+#                          >>>>>>>>> If Statements Part 3 <<<<<<<<<<
+#? ------------------------------------- 13 -------------------------------------
+# طريقه استخدم ال elif
+age=15
+# لو الشرط الاول اتحقق اطبع $age Less Than 25
+if [ $age -lt 25 ] ; then
+    echo "$age Less Than 25" 
+# لو الشرط الثاني اتحقق اطبع $age Equal Than 25
+elif [ $age -eq 25 ] ; then
+    echo "$age Equal Than 25"
+# لو الشرط الاول الثاني لم يتحقق اطبع $age Greater Than 25
+else
+    echo "$age Greater Than 25"
+fi
+#* ------------------------------ >>
+# وممكن نخليهم علي سطر واحد زي المثال دا كدا 
+age=25
+if [ $age -lt 25 ] ; then echo "$age Less Than 25"
+elif [ $age -eq 25 ];then echo "$age Equal Than 25" # > 25 Equal Than 25
+else echo "$age Greater Than 25";fi
+#? ------------------------------------- 14 -------------------------------------
+# Video 14 => https://www.youtube.com/watch?v=8dB0e_jgoK4&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=14
+
+#                          >>>>>>>>> If Statements Part 4 <<<<<<<<<<
+#? ------------------------------------- 14 -------------------------------------
+# دي طريقة عمل 2 if بداخل بعض 
+read -p "Enter Name : " name
+read -p "Enter Age : " age
+if [ $age -ge 20 ] ;then
+    read -p "Enter Gpa : " gpa
+    if [ $gpa -ge 80 ] ;then
+        echo "Welcome $name Your GPA Greater Than Or Equal 80"
+    else 
+        echo "Bad GPA ${gpa} Less Than 80 Please Try Again.."
+    fi
+else 
+    echo "Sorry Your Age ${age} Less Than 20"
+fi
+#* ------------------------------ >>
+# && / || / !
+#! ممكن نعملها بكذا شكل AND
+# 1 ) if [ $age -ge 20 ] && [ $gpa -ge 80 ]
+# 2 ) if [[ $age -ge 20 && $gpa -ge 80 ]]
+# 4 ) if [[ $age -ge 20 ]] && [[ $gpa -ge 80 ]]
+# 3 ) if [ $age -ge 20 -a $gpa -ge 80 ]
+#* ------------------------------ >>
+#! ممكن نعملها بكذا شكل OR
+# 1 ) if [ $age -ge 20 ] || [ $gpa -ge 80 ]
+# 2 ) if [[ $age -ge 20 || $gpa -ge 80 ]]
+# 4 ) if [[ $age -ge 20 ]] || [[ $gpa -ge 80 ]]
+# 3 ) if [ $age -ge 20 -o $gpa -ge 80 ]
+#* ------------------------------ >>
+# && >> لعمل تطابق لشرطين مع بعض لازم الشرطين يتحقق
+# الشرط الاول AND الشرط الثاني
+# [[ الشرط الاول ]] && [[ الشرط الثاني ]]
+read -p "Enter Age : " age
+read -p "Enter Gpa : " gpa
+if [[ $age -ge 20 ]] && [[ $gpa -ge 80 ]] ;then
+    echo "Welcome"
+else 
+    echo "Sorry"
+fi
+#* ------------------------------ > -a >
+# -a > دي طريقه عمل ال AND بشكل ثاني برضو
+# [ الشرط الاول -a الشرط الثاني ]
+age=20
+gpa=80
+if [ $age -ge 20 -a $gpa -ge 80 ] ;then
+    echo "Welcome"
+else 
+    echo "Sorry"
+fi
+#* ------------------------------ > || >
+# || > OR > لعمل تطابق لشرطين مع بعض لازم اي شرط من الشرطين يتحقق
+# الشرط الاول OR الشرط الثاني
+# [[ الشرط الاول ]] || [[ الشرط الثاني ]]
+read -p "Enter Age : " age
+read -p "Enter Gpa : " gpa
+if [[ $age -ge 20 ]] || [[ $gpa -ge 80 ]] ;then
+    echo "Welcome"
+else 
+    echo "Sorry"
+fi
+#* ------------------------------ > -o >
+# -o > دي طريقه عمل ال OR بشكل ثاني برضو
+# [ الشرط الاول -o الشرط الثاني ]
+age=20
+gpa=80
+if [ $age -ge 20 -o $gpa -ge 80 ] ;then
+    echo "Welcome"
+else 
+    echo "Sorry"
+fi
+#* ------------------------------ >>
+# ! >> تستخدم لعكس الصح الي خطاء , والخطاء الي صح
+# يعني الحاجه ال true بتتحول false
+# ! > reverse from True To False ( Reverse Logic )
+age=17
+gpa=77
+if [[ $age -ge 20 ]] || ! [[ $gpa -ge 80 ]] ;then
+    echo "Welcome" # Welcome
+else 
+    echo "Sorry"
+fi
+#* ------------------------------ > -o ! ,, -a !>
+# -o ! ,, -a ! >> نفس الموضوع عادي جدا  
+age=17
+gpa=77
+if [ $age -ge 20 -o ! $gpa -ge 80 ] ;then
+    echo "Welcome" # Welcome
+else 
+    echo "Sorry"
+fi
+#* ------------------------------ >>
+age=17
+gpa=77
+if ! [[ $age -ge 20 ]] || [[ $gpa -ge 80 ]] ;then
+    echo "Welcome" # Welcome
+else 
+    echo "Sorry"
+fi
+#* ------------------------------ >>
+age=21
+gpa=77
+if ! [[ $age -ge 20 ]] || [[ $gpa -ge 80 ]] ;then
+    echo "Welcome"
+else 
+    echo "Sorry" # Sorry
+fi
+#? ------------------------------------- 15 -------------------------------------
+# Video 15 => https://www.youtube.com/watch?v=9mIJqg7aU7s&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=15
+
+#                          >>>>>>>>> If Statements Part 5 <<<<<<<<<<
+#? ------------------------------------- 15 -------------------------------------
+# -d / -e / -s / -r / -w / -x
+#* ------------------------------ >>
+# -d >> True if file is a directory.
+# -d >> هل الملف دا نوعه directory و موجود ولا لا
+path="ntfsv6"
+if [ -d $path ] ;then
+    echo "$path in directory."
+else
+    echo "$path Not In Directory."
+fi
+#* ------------------------------ >>
+# -e >> True if file exists
+# -e >> هل الملف دا موجود ام لا
+path="ntfsv6"
+if [ -e $path ] ;then
+    echo "$path Is Exists."
+else
+    echo "$path Is Not Exists."
+fi
+#* ------------------------------ >>
+# -s >> True if file exists and is not empty.
+# -s >> (اختصار لـ Size) التأكد من أن الملف ليس مجرد اسم موجود، بل هو ملف يحتوي على بيانات
+path="ntfsv6"
+if [ -s $path ] ;then
+    echo "$path Is Exists AND Not Empty."
+else
+    echo "$path Is Not Exists. OR Empty."
+fi
+#* ------------------------------ >>
+# -r >> True if file is readable by you.
+# -r >> هذا يعني أن الشرط سيتحقق إذا كان المستخدم الذي يشغل السكربت يمتلك صلاحية القراءة لهذا الملف.
+path="ntfsv6"
+if [ -r $path ] ;then
+    echo "You Have Readable In file $path."
+else
+    echo "You Not Have Readable In file $path."
+fi
+#* ------------------------------ >>
+# -w >> True if the file is writable by you.
+# -w >> التأكد من أنك تملك صلاحية "الكتابة" أو "التعديل" على الملف أو المجلد.
+path="ntfsv6"
+if [ -w $path ] ;then
+    echo "You Have Writable In file $path."
+else
+    echo "You Not Have Writable In file $path."
+fi
+#* ------------------------------ >>
+# -x >> True if the file is executable by you.
+# -x >> التأكد من أنك تملك صلاحية "التنفيذ" أو التشغيل
+path="ntfsv6"
+if [ -x $path ] ;then
+    echo "You Have Executable In file $path."
+else
+    echo "You Not Have Executable In file $path."
+fi
+#* ------------------------------ > test >
+# دي اسكربت بتشوف هل الملف معاه صلاحيه ال Execute ام لا 
+# لو مش معاه صلاحيه ال Execute بتخش تعدل ال permission بتاعه الي chmod +x $filename
+# لو الملف اصلا مش موجود هيطبع File Not Exist
+ls -la
+read -ep "Enter File Name : " filename
+if [ -x $filename ] ; then
+    echo "File $filename is Already Execute."
+elif [ -e $filename ] ; then
+    chmod +x $filename
+    # echo '#!/bin/bash' > $filename
+    echo "File Now Execute."
+    ls -la
+else 
+    echo "File Not Exist."
+fi
+#* ------------------------------ > test >
+# اسكربت بتشوف الملف لو مجود بتاخد منه نسخه في مكان ثاني
+ls -la
+read -ep "Enter File Name : " filename
+if [ -d $filename ] ; then
+    echo "$filename Is Here Already."
+    echo "Will Copy This File to New Path."
+    read -p "Enter New Path To copy ${filename} : " newfile
+    cp -r "${filename}" "${newfile}"
+    echo "Done! Current Directory Status:"
+    ls -la
+else 
+    echo "Dir Not Found.."
+fi
+#* ------------------------------ >>
+# اسكربت لو المجلد موجود بتمسحه
+ls -la
+read -ep "Enter File Name : " filename
+if [ -d $filename ] ; then
+    echo "${filename} is Exist Will Remove Right Now.."
+    rm -r $filename
+    echo "${filename} Removed.!"
+    ls -la
+else
+    echo "${filename} Not Found,,"
+fi
+#* ------------------------------ >>
+# اسكربت لو المجلد او الملف موجود بتمسحه
+ls -la
+read -ep "Enter File Or Dir Name : " filename
+if [ -e $filename ] ; then
+    echo "${filename} is Exist Will Remove Right Now.."
+    rm -r $filename
+    echo "${filename} Removed.!"
+    ls -la
+else
+    echo "${filename} Not Found,,"
+fi

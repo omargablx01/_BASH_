@@ -264,9 +264,21 @@
 #     echo "True"
 # fi
 #* ------------------------------ >>
+# if [ $age -ge 21 ];then echo "True" ; fi
+# age=25
+# if [ $age -ge 21 ];then
+#     echo "True"
+# fi
+#* ------------------------------ >>
 # if [ $age -lt 21 ];then echo "True" ; fi
 # age=25
 # if [ $age -lt 21 ];then
+#     echo "True"
+# fi
+#* ------------------------------ >>
+# if [ $age -le 21 ];then echo "True" ; fi
+# age=25
+# if [ $age -le 21 ];then
 #     echo "True"
 # fi
 #? ------------------------------------- 12 -------------------------------------
@@ -277,8 +289,254 @@
 # age=20
 # if [ $age -lt 21 ];then echo "True" ; fi
 #* ------------------------------ >>
-if [ $0 -a "./bash.sh" ] ; then 
-    echo "Found File $0"
-else
-    echo "Not Found $0"
-fi
+# age=26
+# if [ $age -lt 25 ] ; then echo "$age Less Than 25" ; else echo "$age Greater Than 25" ; fi
+#* ------------------------------ >>
+# if [ $age -lt 25 ] ; then
+#     echo "$age Less Than 25"
+# else
+#     echo "$age Greater Than 25"
+# fi
+#? ------------------------------------- 13 -------------------------------------
+# Video 13 => https://www.youtube.com/watch?v=4ix-A3PC1VA&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=13
+
+#                          >>>>>>>>> If Statements Part 3 <<<<<<<<<<
+#? ------------------------------------- 13 -------------------------------------
+# age=15
+# if [ $age -lt 25 ] ; then
+#     echo "$age Less Than 25" 
+# elif [ $age -eq 25 ] ; then
+#     echo "$age Equal Than 25"
+# else
+#     echo "$age Greater Than 25"
+# fi
+#* ------------------------------ >>
+# age=25
+# if [ $age -lt 25 ] ; then echo "$age Less Than 25"
+# elif [ $age -eq 25 ];then echo "$age Equal Than 25" # > 25 Equal Than 25
+# else echo "$age Greater Than 25";fi
+#? ------------------------------------- 14 -------------------------------------
+# Video 14 => https://www.youtube.com/watch?v=8dB0e_jgoK4&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=14
+
+#                          >>>>>>>>> If Statements Part 4 <<<<<<<<<<
+#? ------------------------------------- 14 -------------------------------------
+# read -p "Enter Name : " name
+# read -p "Enter Age : " age
+# if [ $age -ge 20 ] ;then
+#     read -p "Enter Gpa : " gpa
+#     if [ $gpa -ge 80 ] ;then
+#         echo "Welcome $name Your GPA Greater Than Or Equal 80"
+#     else 
+#         echo "Bad GPA ${gpa} Less Than 80 Please Try Again.."
+#     fi
+# else 
+#     echo "Sorry Your Age ${age} Less Than 20"
+# fi
+#* ------------------------------ > AND 1 >
+# read -p "Enter Age : " age
+# read -p "Enter Gpa : " gpa
+# if [ $age -ge 20 ] && [ $gpa -ge 80 ] ;then
+#     echo "Welcome!"
+# else 
+#     echo "Sorry Age And Gpa Err..!"
+# fi
+#* ------------------------------ > AND 2 >
+# read -p "Enter Age : " age
+# read -p "Enter Gpa : " gpa
+# if [[ $age -ge 20 && $gpa -ge 80 ]] ;then
+#     echo "Welcome!"
+# else 
+#     echo "Sorry Age Or Gpa Err..!"
+# fi
+#* ------------------------------ > AND 3 >
+# read -p "Enter Age : " age
+# read -p "Enter Gpa : " gpa
+# if [[ $age -ge 20 ]] && [[ $gpa -ge 80 ]] ;then
+#     echo "Welcome!"
+# else 
+#     echo "Sorry Age Or Gpa Err..!"
+# fi
+#* ------------------------------ > AND 4 >
+# read -p "Enter Age : " age
+# read -p "Enter Gpa : " gpa
+# if [ $age -ge 20 -a $gpa -ge 80 ] ;then
+#     echo "Welcome!"
+# else 
+#     echo "Sorry Age Or Gpa Err..!"
+# fi
+#* ------------------------------ > OR 1 >
+# read -p "Enter Age : " age
+# read -p "Enter Gpa : " gpa
+# if [ $age -ge 20 ] || [ $gpa -ge 80 ] ;then
+#     echo "Welcome!"
+# else 
+#     echo "Sorry Age And Gpa Err..!"
+# fi
+#* ------------------------------ > OR 2 >
+# read -p "Enter Age : " age
+# read -p "Enter Gpa : " gpa
+# if [[ $age -ge 20 || $gpa -ge 80 ]] ;then
+#     echo "Welcome!"
+# else 
+#     echo "Sorry Age Or Gpa Err..!"
+# fi
+#* ------------------------------ > OR 3 >
+# read -p "Enter Age : " age
+# read -p "Enter Gpa : " gpa
+# if [[ $age -ge 20 ]] || [[ $gpa -ge 80 ]] ;then
+#     echo "Welcome!"
+# else 
+#     echo "Sorry Age Or Gpa Err..!"
+# fi
+#* ------------------------------ > OR 4 >
+# read -p "Enter Age : " age
+# read -p "Enter Gpa : " gpa
+# if [ $age -ge 20 -o $gpa -ge 80 ] ;then
+#     echo "Welcome!"
+# else 
+#     echo "Sorry Age Or Gpa Err..!"
+# fi
+#* ------------------------------ > ! >
+# read -p "Enter Age : " age
+# read -p "Enter Gpa : " gpa
+# if ! [[ $age -ge 20 ]] || [[ $gpa -ge 80 ]] ;then
+#     echo "Welcome!"
+# else 
+#     echo "Sorry Age And Gpa Err..!"
+# fi
+#* ------------------------------ >>
+# age=17
+# gpa=77
+# if [[ $age -ge 20 ]] || ! [[ $gpa -ge 80 ]] ;then
+#     echo "Welcome" # Welcome
+# else 
+#     echo "Sorry"
+# fi
+#* ------------------------------ > -o ! ,, -a ! >
+# age=17
+# gpa=77
+# if [ $age -ge 20 -o ! $gpa -ge 80 ] ;then
+#     echo "Welcome" # Welcome
+# else 
+#     echo "Sorry"
+# fi
+#* ------------------------------ >>
+# ممكن نستخدمها في اي مكان زي ما في المثال كدا 
+# age=17
+# gpa=77
+# if ! [[ $age -ge 20 ]] || [[ $gpa -ge 80 ]] ;then
+#     echo "Welcome" # Welcome
+# else 
+#     echo "Sorry"
+# fi
+#* ------------------------------ >>
+# age=21
+# gpa=77
+# if ! [[ $age -ge 20 ]] || [[ $gpa -ge 80 ]] ;then
+#     echo "Welcome"
+# else 
+#     echo "Sorry" # Sorry
+# fi
+#? ------------------------------------- 15 -------------------------------------
+# Video 15 => https://www.youtube.com/watch?v=9mIJqg7aU7s&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=15
+
+#                          >>>>>>>>> If Statements Part 5 <<<<<<<<<<
+#? ------------------------------------- 15 -------------------------------------
+# -d / -e / -s / -r / -w / -x
+#* ------------------------------ >>
+# path="ntfsv7"
+# if [ -d $path ] ;then
+#     echo "${path} Is directory. AND ${path} Exists"
+# else
+#     echo "${path} Not Directory. OR ${path} Not Exists"
+# fi
+#* ------------------------------ >>
+# path="ntfsv6"
+# if [ -e $path ] ;then
+#     echo "$path Is Exists."
+# else
+#     echo "$path Is Not Exists."
+# fi
+#* ------------------------------ >>
+# path="ntfsv6"
+# if [ -s $path ] ;then
+#     echo "$path Is Exists AND Not Empty."
+# else
+#     echo "$path Is Not Exists. OR Empty."
+# fi
+#* ------------------------------ >>
+# path="ntfsv6"
+# if [ -r $path ] ;then
+#     echo "You Have Readable In file $path"
+# else
+#     echo "You Not Have Readable In file $path"
+# fi
+#* ------------------------------ >>
+# path="ntfsv6"
+# if [ -w $path ] ;then
+#     echo "You Have Writable In file $path"
+# else
+#     echo "You Not Have Writable In file $path"
+# fi
+#* ------------------------------ >>
+# path="notes.sh"
+# if [ -x $path ] ;then
+#     echo "You Have Executable In file $path"
+# else
+#     echo "You Not Have Executable In file $path"
+# fi
+#* ------------------------------ >>
+# ls -la
+# read -ep "Enter File Name : " filename
+# if [ -x $filename ] ; then
+#     echo "File $filename is Already Execute."
+# elif [ -e $filename ] ; then
+#     echo '#!/bin/bash' > $filename
+#     echo "File Now Execute."
+#     ls -la
+# else 
+#     echo "File Not Exist."
+# fi
+#* ------------------------------ >>
+# ls -la
+# read -ep "Enter File Name : " filename
+# if [ -d $filename ] ; then
+#     echo "$filename Is Here Already."
+#     echo "Will Copy This File to New Path."
+#     read -p "Enter New Path To copy ${filename} : " newfile
+#     cp -r "${filename}" "${newfile}"
+#     echo "Done! Current Directory Status:"
+#     ls -la
+# else 
+#     echo "Dir Not Found.."
+# fi
+#* ------------------------------ >>
+# ls -la
+# read -ep "Enter Dir Name : " filename
+# if [ -d $filename ] ; then
+#     echo "${filename} is Exist Will Remove Right Now.."
+#     rm -r $filename
+#     echo "${filename} Removed.!"
+#     ls -la
+# else
+#     echo "${filename} Not Found,,"
+# fi
+#* ------------------------------ >>
+# ls -la
+# read -ep "Enter File Or Dir Name : " filename
+# if [ -e $filename ] ; then
+#     echo "${filename} is Exist Will Remove Right Now.."
+#     rm -r $filename
+#     echo "${filename} Removed.!"
+#     ls -la
+# else
+#     echo "${filename} Not Found,,"
+# fi
+
+# age=20
+# gpa=80
+# if [[ $age -ge 20 || $gpa -ge 80 ]] ;then
+#     echo "Welcome"
+# else 
+#     echo "Sorry"
+# fi
