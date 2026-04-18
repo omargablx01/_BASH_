@@ -187,8 +187,98 @@
 
 #                          >>>>>>>>> Arithmetic Operators Part 3 <<<<<<<<<<
 #? ------------------------------------- 08 -------------------------------------
-# | = OR >> تستخدم بمعني او العنصر الاول او الثاني
-# يطبع ARG1 إذا كان موجوداً (ليس null) وليس صفراً، وإلا يطبع ARG2.
-expr 0 \| 2
-expr 0 "|" 3
-echo $((0 | 5))
+#* ------------------------------ > | , OR >
+# expr 0 \| 2
+# expr 0 "|" 3
+# echo $((0 | 5))
+#* ------------------------------ > & , AND >
+
+#* ------------------------------ >>
+# var1=5
+# var2=10
+# echo "$var1 OR $var2  :   `expr $var1 "|" $var2`"
+# echo "$var1 AND $var2 :   `expr $var1 "&" $var2`"
+# echo "$var1 < $var2   :   `expr $var1 "<" $var2`"
+# echo "$var1 <= $var2  :   `expr $var1 "<=" $var2`"
+# echo "$var1 = $var2   :   `expr $var1 "=" $var2`"
+# echo "$var1 != $var2  :   `expr $var1 "!=" $var2`"
+# echo "$var1 >= $var2  :   `expr $var1 ">=" $var2`"
+# echo "$var1 > $var2   :   `expr $var1 ">" $var2`"
+# OR 
+# echo "$var1 OR $var2  :   `expr $var1 \| $var2`"
+# echo "$var1 AND $var2 :   `expr $var1 \& $var2`"
+# echo "$var1 < $var2   :   `expr $var1 \< $var2`"
+# echo "$var1 <= $var2  :   `expr $var1 \<= $var2`"
+# echo "$var1 = $var2   :   `expr $var1 \= $var2`"
+# echo "$var1 != $var2  :   `expr $var1 \!= $var2`"
+# echo "$var1 >= $var2  :   `expr $var1 \>= $var2`"
+# echo "$var1 > $var2   :   `expr $var1 \> $var2`"
+#? ------------------------------------- 09 -------------------------------------
+# Video 9 => https://www.youtube.com/watch?v=WMLN0LxS2qM&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=9
+
+#                          >>>>>>>>> Arithmetic Operators Part 4 <<<<<<<<<<
+#? ------------------------------------- 09 -------------------------------------
+# echo 5.2 + 10.7 | bc # bc: command not found
+
+# echo "print(5.2 + 10.8)" | python3
+# echo "5.2 10.5" | awk '{print $1 + $2}'
+#? ------------------------------------- 10 -------------------------------------
+# Video 10 => https://www.youtube.com/watch?v=8FG6pfHOB4A&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=10
+
+#                          >>>>>>>>> Arithmetic Operators Part 5 <<<<<<<<<<
+#? ------------------------------------- 10 -------------------------------------
+# let x=5+2
+# echo $x  # 7
+#* ------------------------------ >>
+# let arg1=5 arg2=6 arg3=7 arg4=8
+# echo $arg1
+# echo $arg2
+# echo $arg3
+# echo $arg4
+#* ------------------------------ >>
+# var1=55
+# let var1++
+# echo $var1
+# let --var1
+# echo $var1
+#? ------------------------------------- 11 -------------------------------------
+# Video 11 => https://www.youtube.com/watch?v=gNSOGl-Mjxk&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=11
+
+#                          >>>>>>>>> If Statements Part 1 <<<<<<<<<<
+#? ------------------------------------- 11 -------------------------------------\
+# if [ $age -eq 21 ];then echo "True" ; fi
+# age=21
+# if [ $age -eq 21 ];then
+#     echo "Yes $age Equal 21"
+# fi
+#* ------------------------------ >>
+# if [ $age -ne 21 ];then echo "True" ; fi
+# age=21
+# if [ $age -ne 21 ];then
+#     echo "Yes $age Not Equal 21"
+# fi
+#* ------------------------------ >>
+# if [ $age -gt 21 ];then echo "True" ; fi
+# age=25
+# if [ $age -gt 21 ];then
+#     echo "True"
+# fi
+#* ------------------------------ >>
+# if [ $age -lt 21 ];then echo "True" ; fi
+# age=25
+# if [ $age -lt 21 ];then
+#     echo "True"
+# fi
+#? ------------------------------------- 12 -------------------------------------
+# Video 12 => https://www.youtube.com/watch?v=eleB6KHiatY&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=12
+
+#                          >>>>>>>>> If Statements Part 2 <<<<<<<<<<
+#? ------------------------------------- 12 -------------------------------------
+# age=20
+# if [ $age -lt 21 ];then echo "True" ; fi
+#* ------------------------------ >>
+if [ $0 -a "./bash.sh" ] ; then 
+    echo "Found File $0"
+else
+    echo "Not Found $0"
+fi
