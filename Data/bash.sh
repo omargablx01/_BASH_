@@ -852,26 +852,475 @@
 
 #                          >>>>>>>>> Case Statements part 1 <<<<<<<<<<
 #? ------------------------------------- 23 -------------------------------------
+# read -p "Choic Number ( one|two|three ) : " num
 
-read -p "Enter the name of a country: " COUNTRY
+# case $num in 
+#     'one')
+#       echo "Right Choic One";;
+#     'two')
+#       echo "Right Choic Two";;
+#     'three')
+#       echo "Right Choic Three";;
+#     *)
+#       echo "Bad Choic Try Again.." ;;
+# esac
+#!---------------- ال if بتعمل نفس مهمه ال case بالظبط
+# read -p "Choic Number 1-3 : " num
 
-echo -n "The official language of $COUNTRY is "
+# if [ $num -eq 1 ];then
+#     echo "Right Choic One"
 
-case $COUNTRY in
+# elif [ $num -eq 2 ];then
+#     echo "Right Choic Two"
 
-  Lithuania)
-    echo "Lithuanian"
-    ;;
+# elif [ $num -eq 3 ];then
+#     echo "Right Choic Three"
 
-  Romania | Moldova)
-    echo "Romanian"
-    ;;
+# else
+#     echo "Bad Choic Try Again.."
+# fi
+#* ------------------------------ >>
+# read -p "Enter Operating System ( linux|windows|mac ) : " os
 
-  Italy | "San Marino" | Switzerland | "Vatican City")
-    echo "Italian"
-    ;;
+# case $os in
 
-  *)
-    echo "unknown"
-    ;;
-esac
+#   linux) echo "Ilove ${os}";;
+
+#   windows) echo "Bad Choose ${os}!";;
+
+#   mac) echo "Nice ${os}";;
+
+#   *) echo "Sorry , Don't Have DB..! For ${os}"
+
+# esac
+#* ------------------------------ >>
+# read -p "Enter the name of a country: " COUNTRY
+
+# echo -n "The official language of $COUNTRY is "
+
+# case $COUNTRY in
+
+#   Lithuania)
+#     echo "Lithuanian"
+#     ;;
+
+#   Romania | Moldova)
+#     echo "Romanian"
+#     ;;
+
+#   Italy | "San Marino" | Switzerland | "Vatican City")
+#     echo "Italian"
+#     ;;
+
+#   *)
+#     echo "unknown"
+#     ;;
+# esac
+#? ------------------------------------- 24 -------------------------------------
+# Video 24 => https://www.youtube.com/watch?v=Ilw9cIBuWjc&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=24
+
+#                          >>>>>>>>> Case Statements part 2 <<<<<<<<<<
+#? ------------------------------------- 24 -------------------------------------
+# if [ -f $1 ] ;then
+#     echo "$1 is True exists and is a regular file."
+#     case $1 in 
+#       *.rar) unrar -x $1;;
+#       *.tar) tar -xvf $1;;
+#       *.tar.bz2) tar -xvjf $1;;
+#       *.tar.gz) tar -xvzf $1;;
+#       *.zip) unzip $1;;
+#       *) echo "Failed Name Try Again"
+#     esac
+# else
+#   echo "$1 Not Found Try Again.."
+# fi
+#* ------------------------------ >>
+# ls -la
+# read -ep "Enter File Name Like ( test.txt ) : " filename
+# if [ -f $filename ] ;then
+#   echo "True File Exists & Regular File"
+#   read -p "Enter ( y|n ) To Remove : " yn
+#   case $yn in
+#     'y'|'yes') 
+#       rm -r $filename
+#       echo "$filename Is Removed.."
+#       ls -la
+#     ;;
+#     'n'|'no') 
+#       echo "FIle Not Removed..";;
+#     *) 
+#       echo "False Choose try Again..."
+#   esac
+# else 
+#   echo "$filename Is not Exists OR Not Regular File"
+# fi
+#* ------------------------------ >>
+# case "apple" in
+#     apple)
+#         echo "It's an apple."
+#         ;&  # كمل للي بعدها
+#     fruit)
+#         echo "It's also a fruit."
+#         ;;
+# esac
+#* ------------------------------ >>
+# case "apple" in
+#     apple)
+#         echo "It's an apple."
+#         ;;& 
+#     fruit|apple)
+#         echo "It's also a fruit & apple."
+#         ;;
+# esac
+#* ------------------------------ >>
+# read -p "Do you want to continue? (y/n): " answer
+# case $answer in
+#     [yY] | [yY][eE][sS])
+#         echo "Continuing..."
+#         ;;
+#     [nN] | [nN][oO])
+#         echo "Exiting..."
+#         exit 1
+#         ;;
+#     *)
+#         echo "Invalid input."
+#         ;;
+# esac
+#* ------------------------------ >>
+# read -p "Enter the name of a country: " COUNTRY
+
+# echo -n "The official language of $COUNTRY is "
+
+# case $COUNTRY in
+
+#   Lithuania)
+#     echo "Lithuanian"
+#     ;;
+
+#   Romania | Moldova)
+#     echo "Romanian"
+#     ;;
+
+#   Italy | "San Marino" | Switzerland | "Vatican City")
+#     echo "Italian"
+#     ;;
+
+#   *)
+#     echo "unknown"
+#     ;;
+# esac
+#? ------------------------------------- 25 -------------------------------------
+# Video 25 => https://www.youtube.com/watch?v=psRAt2Lb-Nw&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=25
+
+#                          >>>>>>>>> For Loop part 1 <<<<<<<<<<
+#? ------------------------------------- 25 -------------------------------------
+# for i in {2..10..2}
+# do
+#   echo "Hello ${i}"
+# done
+#* ------------------------------ >>
+# for i in {1..10}
+# do
+#   echo "Hello ${i}"
+# done
+#* ------------------------------ >>
+# for i in 1 20 30 40 50 60 100;do
+#     echo "Loob : $i" ;done
+#* ------------------------------ >> OUT OF COURSE
+# for name in "Ahmed" "Ali" "Sara"; do
+#     echo "Hello $name"
+# done
+#* ------------------------------ >>
+# for i in * 
+# do
+#   echo "File : $i"
+# done
+#* ------------------------------ >>
+# for i in {2..100..2} ; do
+#   if [[ $i -le 20 ]] ;then
+#       echo "Num : $i"
+#   fi
+# done
+#? ------------------------------------- 26 -------------------------------------
+# Video 26 => https://www.youtube.com/watch?v=vJzbxndi8G4&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=26
+
+#                          >>>>>>>>> For Loop part 2 <<<<<<<<<<
+#? ------------------------------------- 26 -------------------------------------
+# for ((i=1 ; i<=5 ; i++));do
+#     echo "i : $i"
+#     sleep 2
+# done
+#* ------------------------------ >>
+# for file in * ;do
+#   if [[ $file == *tar.gz ]];then 
+#     rm -r $file
+#   fi
+# done
+#? ------------------------------------- 27 -------------------------------------
+# Video 27 => https://www.youtube.com/watch?v=MosmKd2bnqQ&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=27
+
+#                          >>>>>>>>> For Loop part 3 <<<<<<<<<<
+#? ------------------------------------- 27 -------------------------------------
+# for num in {1..50} ; do
+#   if [[ $((num%2)) -eq 0 ]] ;then
+#     echo "Odd Num : $num"
+#   else
+#     echo "Even Num : $num"
+#   fi
+# done
+#* ------------------------------ >>
+# echo
+# for num in {2..50..2} ; do
+#     echo "Odd Num : $num"
+# done
+#* ------------------------------ >>
+# for num in {1..50} ; do
+#   if [[ $((num%2)) -eq 1 ]] ;then
+#   continue
+#   fi
+#     echo "Num : $num"
+# done
+#* ------------------------------ >>
+# for num in {1..50} ; do
+#   if [[ $((num%2)) -eq 0 ]] ;then
+#   break
+#   fi
+#     echo "Num : $num"
+# done
+#? ------------------------------------- 28 -------------------------------------
+# Video 28 => https://www.youtube.com/watch?v=SWDrATjXYlo&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=28
+
+#                          >>>>>>>>> While Loop part 1 <<<<<<<<<<
+#? ------------------------------------- 28 -------------------------------------
+# i=1
+# while [ $i -le 10 ];do
+#   echo "i : $i"
+#   i=$((++i))
+# done
+#* ------------------------------ >>
+# i=1
+# while [ $i -le 10 ];do
+#   echo "i : $i"
+#   i=$((++i)) # OLD
+# done
+#* ------------------------------ >>
+# i=1
+# while [ $i -le 10 ];do
+#   echo "i : $i"
+#   i=$((i+1)) # OLD
+# done
+#* ------------------------------ >>
+# i=1
+# while [ $i -le 10 ];do
+#   echo "i : $i"
+#     ((i+=1)) # Good 
+# done
+#* ------------------------------ >>
+# i=1
+# while [ $i -le 10 ];do
+#   echo "i : $i"
+#   ((i++)) # Good & NEW
+# done
+#* ------------------------------ >>
+# count=1
+# while [ $count -le 5 ]; do
+#     echo "Count is $count"
+#     ((count++))
+# done
+#* ------------------------------ >>
+# while read -r line; do
+#     echo "Line : $line"
+# done < "myfile.txt"
+#? ------------------------------------- 29 -------------------------------------
+# Video 29 => https://www.youtube.com/watch?v=l8Y4jYIZlvY&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=29
+
+#                          >>>>>>>>> While Loop part 2 <<<<<<<<<<
+#? ------------------------------------- 29 -------------------------------------
+# x=1; while [ $x -le 5 ];do echo "Welcome $((x++)) Time";done # OLD Way
+# x=1; while [ $x -le 5 ];do echo "Welcome $x Time" ;((x++));done # BEST Way
+#* ------------------------------ >>
+# x=1
+# while [ $x -le 5 ]
+# do
+#     echo "Welcome $((x++)) Time"
+# done
+#* ------------------------------ >>
+# x=1
+# while [ $x -le 5 ]
+# do
+#     echo "Welcome $x Time"
+#     (( x++ ))
+# done
+#* ------------------------------ >>
+# fact=1
+# num=$1
+# while [ $num -gt 0 ]
+# do
+#     fact=$(( $fact * $num ))
+#     # num=$(($num-1))
+#     num=$((--num))
+# done
+# echo $fact
+#? ------------------------------------- 30 -------------------------------------
+# Video 30 => https://www.youtube.com/watch?v=S3nkMGKcsSo&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=30
+
+#                          >>>>>>>>> Until Loop <<<<<<<<<<
+#? ------------------------------------- 30 -------------------------------------
+# x=5
+# until [ $x -eq 10 ] ;do
+#     echo "until ${i}"
+# done
+#* ------------------------------ >>
+# set -x
+# x=5
+# until [ $x -eq 10 ] ;do
+#     echo "until number : ${x}"
+#     ((x++))
+# done
+# set +x
+#* ------------------------------ >>
+# str="Hello Python And Bash"
+# for i in $str ;do
+#     echo $i
+# done
+#* ------------------------------ >>
+# IFS="-"
+# str="Hello-Python-And-Bash"
+# for i in $str ;do
+#     echo $i
+# done
+#? ------------------------------------- 31 -------------------------------------
+# Video 31 => https://www.youtube.com/watch?v=3O_Eud9teNc&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=31
+
+#                          >>>>>>>>> Arrays part 1 <<<<<<<<<<
+#? ------------------------------------- 31 -------------------------------------
+#! تم شرح فيها ما هي ال array بشكل عام 
+#? ------------------------------------- 32 -------------------------------------
+# Video 32 => https://www.youtube.com/watch?v=ZJa9_3cTQkA&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=32
+
+#                          >>>>>>>>> Arrays part 2 <<<<<<<<<<
+#? ------------------------------------- 32 -------------------------------------
+# declare -a distros=("Ubuntu" "Fedora" "Debian")
+# distros=("Ubuntu" "Fedora" "Debian")
+# echo ${distros}
+# echo ${distros[@]}
+# echo ${distros[1]}
+# echo ${distros[-1]}
+# echo ${#distros[@]}
+# echo ${#distros[1]}
+#* ------------------------------ >>
+# string="ntfsv6"
+# echo ${#string}
+#? ------------------------------------- 33 -------------------------------------
+# Video 33 => https://www.youtube.com/watch?v=P4GYb96h7Ko&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=33
+
+#                          >>>>>>>>> Arrays part 3 <<<<<<<<<<
+#? ------------------------------------- 33 -------------------------------------
+# declare -a arr
+# arr[0]="Tester1"
+# arr[1]="Faild2"
+# echo ${arr[@]}
+#* ------------------------------ >>
+# declare -a arr=([3]="Tester1" [4]="Faild2")
+# arr[0]="Hello"
+# echo ${arr[@]}
+#* ------------------------------ >>
+# declare -a arr=("Tester1" "Faild2")
+# echo ${arr[@]}
+# arr+=("Helper" "Manger")
+# echo ${arr[@]}
+#* ------------------------------ >>
+# declare -a arr=([first]="Te" [sec]="Fi")
+# echo ${arr[@]}
+#* ------------------------------ >>
+# declare -A arr=([first]="Te" [sec]="Fi")
+# echo ${arr[sec]}
+#? ------------------------------------- 34 -------------------------------------
+# Video 34 => https://www.youtube.com/watch?v=CAa3ZaBPxcg&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=34
+
+#                          >>>>>>>>> Arrays part 4 <<<<<<<<<<
+#? ------------------------------------- 34 -------------------------------------
+# arr=("Tester1" "Faild2" "Succ" "Log" "Run")
+# echo "${arr[-1]}"
+# echo "${arr[@]: -1}"
+#* ------------------------------ >>
+# declare -a arr=("Tester1" "Faild2" "Succ" "Log")
+# echo "${arr[@]:2}"
+#* ------------------------------ >>
+# declare -a arr=("Tester1" "Faild2" "Succ" "Log" "Run")
+# echo "${arr[@]:1:2}"
+#* ------------------------------ >>
+# declare -a arr=("Tester1" "Faild2" "Succ" "Log" "Run")
+# echo "${arr[@]:1:3}"
+#* ------------------------------ >> OUT OF COURSE
+# declare -a my_array=( "Hydrogen" "Helium" "Lithium" "Beryllium" )
+# echo ${!my_array[@]}
+#* ------------------------------ >>
+# my_array=( "Hydrogen Round" "Helium join" "Lithium Eng" "Beryllium Windy" 5 7 9 10 )
+# for i in "${my_array[@]}"
+# do
+#     echo "Index : $i"
+# done
+# echo "================================================"
+# for i in "${my_array[*]}"
+# do
+#     echo "Index : $i"
+# done
+#? ------------------------------------- 35 -------------------------------------
+# Video 35 => https://www.youtube.com/watch?v=vcgcjsCeUkw&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=35
+
+#                          >>>>>>>>> Arrays part 5 <<<<<<<<<<
+#? ------------------------------------- 35 -------------------------------------
+# arr=("Tester1" "Faild2")
+# arr+=("Done" "Fun")
+# echo ${arr[@]}
+#* ------------------------------ >>
+# arr=("Tester1" "Faild2")
+# arr=("Done" "Fun" ${arr[@]})
+# echo ${arr[@]}
+#* ------------------------------ >>
+# arr=(a b c d)
+# insert=2
+# arr=("${arr[@]:0:$insert}" "insertVal" "${arr[@]:0:$insert}")
+# echo ${arr[@]}
+#* ------------------------------ >>
+# arr=(a b c d)
+# echo ${arr[@]}
+# echo ${!arr[@]}
+# echo "================================================ After Remove Index 0"
+# unset -v 'arr[0]'
+# echo ${arr[@]}
+# echo ${!arr[@]}
+#* ------------------------------ >>
+# arr1=(a b c d)
+# arr2=(1 2 3 4)
+# arr3=("${arr1[@]}" "${arr2[@]}")
+# echo ${arr3[@]}
+#* ------------------------------ >>
+# declare -A arr=([first]='One' [second]='Two' [third]='Three')
+# echo ${arr[@]}
+# echo ${!arr[@]}
+#* ------------------------------ >> loob with for
+# arr1=(a b c d)
+# for (( i=0 ; i<${#arr1[@]} ; i++ ));do
+#     echo "Item : ${arr1[$i]} > index : $i"
+# done
+#* ------------------------------ >> loob with while
+# arr1=(a b c d)
+# i=0
+# while [ $i -lt ${#arr1[@]} ] ;do
+#     echo ${arr1[$i]}
+#     ((i++))
+# done
+#* ------------------------------ >> loob with until
+# arr1=(a b c d)
+# i=0
+# until [ $i -ge ${#arr1[@]} ] ;do
+#     echo ${arr1[$i]}
+#     ((i++))
+# done
+#? ------------------------------------- 36 -------------------------------------
+# Video 36 => https://www.youtube.com/watch?v=0gLxTbCULto&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=36
+
+#                          >>>>>>>>> Arrays part 6 <<<<<<<<<<
+#? ------------------------------------- 36 -------------------------------------

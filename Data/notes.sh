@@ -1031,7 +1031,6 @@ fi
 # تتم المقارنة هنا من خلال حرف ب الحرف المقابل له علي حسب هو رقم ال DEC بتاعه في الترتيب
 # <  >> True if STRING1 sorts before STRING2 lexicographically.
 # >  >> True if STRING1 sorts after STRING2 lexicographically.
-
 var1="Linux"
 var2="Linux"
 
@@ -1047,10 +1046,131 @@ fi
 
 #                          >>>>>>>>> Case Statements part 1 <<<<<<<<<<
 #? ------------------------------------- 23 -------------------------------------
-# case $namevar in >> 
+# case $namevar in >> دي طريقه استخدام ال case يعتبر زي ال if كدا بالظبط
+# ولكن يوجد فروق جوهريه سوف نتعلمها فيما بعد
+# 'one') >> لو المستخدم دخل كلمه 'one' هيطبع الرساله دي Right Choic One وهكذا
+# ;; >>  نفذ الأوامر واخرج فوراً من الـ case (زي break)
+# *) >> دي تعتبر هي ال else يعني لو كل الشروط دي متحققش خش علي ال else
+# esac >> دي تستخدها علشان تقفل ال case
+read -p "Choic Number 1-3 : " num
 
-echo -n "Enter the name of a country: "
-read COUNTRY
+case $num in 
+    'one')
+      echo "Right Choic One";;
+    'two')
+      echo "Right Choic Two";;
+    'three')
+      echo "Right Choic Three";;
+    *)
+      echo "Bad Choic Try Again.." ;;
+esac
+# ............. دي نفس الامر ب ال if ............
+read -p "Choic Number 1-3 : " num
+
+if [ $num -eq 1 ];then
+    echo "Right Choic One"
+
+elif [ $num -eq 2 ];then
+    echo "Right Choic Two"
+
+elif [ $num -eq 3 ];then
+    echo "Right Choic Three"
+
+else
+    echo "Bad Choic Try Again.."
+#* ------------------------------ >>
+read -p "Enter Operating System ( linux|windows|mac ) : " os
+
+case $os in
+
+  linux) echo "Ilove ${os}";;
+
+  windows) echo "Bad Choose ${os}!";;
+
+  mac) echo "Nice ${os}";;
+
+  *) echo "Sorry , Don't Have DB..! For ${os}"
+
+esac
+#? ------------------------------------- 24 -------------------------------------
+# Video 24 => https://www.youtube.com/watch?v=Ilw9cIBuWjc&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=24
+
+#                          >>>>>>>>> Case Statements part 2 <<<<<<<<<<
+#? ------------------------------------- 24 -------------------------------------
+# دي اسكربت بتفك الضغط عن اي نوع من انواع ملفات الضغط
+if [ -f $1 ] ;then
+    echo "$1 is True exists and is a regular file."
+    case $1 in 
+      *.rar) unrar -x $1;;
+      *.tar) tar -xvf $1;;
+      *.tar.bz2) tar -xvjf $1;;
+      *.tar.gz) tar -xvzf $1;;
+      *.zip) unzip $1;;
+      *) echo "Failed Name Try Again"
+    esac
+else
+  echo "$1 Not Found Try Again.."
+fi
+#* ------------------------------ >>
+# عملنا اسكربت بتشوف هل الملف دا نوعه ملف و موجود ام لا لو موجود بيعرض عليك يمسحه او لا
+# 'y'|'yes' >> إنه ينفذ الأوامر اللي تحتها لو كانت قيمة المتغير هي 'y' أو 'yes'.
+ls -la
+read -ep "Enter File Name Like ( test.txt ) : " filename
+if [ -f $filename ] ;then
+  echo "True File Exists & Regular File"
+  read -p "Enter ( y|n ) To Remove : " yn
+  case $yn in
+    'y'|'yes') 
+      rm -r $filename
+      echo "$filename Is Removed.."
+      ls -la
+    ;;
+    'n'|'no') 
+      echo "FIle Not Removed..";;
+    *) 
+      echo "False Choose try Again..."
+  esac
+else 
+  echo "$filename Is not Exists OR Not Regular File"
+fi
+#* ------------------------------ >>
+# ;& >> نفذ الأوامر وكمل تنفيذ الكود اللي في الحالة اللي بعدها مباشرة (حتى لو النمط مش مطابق!).
+case "apple" in
+    apple)
+        echo "It's an apple."
+        ;&  # كمل للي بعدها
+    fruit)
+        echo "It's also a fruit."
+        ;;
+esac
+#* ------------------------------ >>
+# ;;& >> كمل فحص باقي الأنماط وشوف لو فيه حاجة تانية مطابقة (اختبار الأنماط التالية).
+case "apple" in
+    apple)
+        echo "It's an apple."
+        ;;&
+    fruit|apple)
+        echo "It's also a fruit."
+        ;;
+esac
+#* ------------------------------ >>
+# [...] >> تعني أي حرف موجود داخل الأقواس
+# exit 1 >> هنا تستخدم لتوقيف الاسكربت كلها يعني اي حاجه تحتها مش هتتنفذ
+read -p "Do you want to continue? (y/n): " answer
+case $answer in
+    [yY] | [yY][eE][sS]) # y|Y|yes|Yes|YEs|YES|yEs|yES|yeS|YeS|etc...
+        echo "Continuing..."
+        ;;
+    [nN] | [nN][oO])
+        echo "Exiting..."
+        exit 1
+        ;;
+    *)
+        echo "Invalid input."
+        ;;
+esac
+#* ------------------------------ >>
+read -p "Enter the name of a country: " COUNTRY
 
 echo -n "The official language of $COUNTRY is "
 
@@ -1072,3 +1192,371 @@ case $COUNTRY in
     echo "unknown"
     ;;
 esac
+#? ------------------------------------- 25 -------------------------------------
+# Video 25 => https://www.youtube.com/watch?v=psRAt2Lb-Nw&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=25
+
+#                          >>>>>>>>> For Loop part 1 <<<<<<<<<<
+#? ------------------------------------- 25 -------------------------------------
+# for namevar in {rangefrom..rangeto..step};do >> هذه طريقه ال for loob والطريقه دي عمله زي ال range python
+# step def == 1
+for i in {2..10..2}
+do
+  echo "Hello ${i}"
+done
+#* ------------------------------ >>
+# دي الطريقة العاديه جداا هيطبع من 1 الي 10
+for i in {1..10}
+do
+  echo "Hello ${i}"
+done
+#* ------------------------------ >>
+# هنا كدا هيعمل طباعه للارقام الي انت حطيتها دي يعني مره هيطبع 1 ومره 20و30و40و100
+for i in 1 20 30 40 100;do
+    echo "Loob : $i" ;done
+#* ------------------------------ >>
+# ونفس الفكره برضو هيطبع كل مره اسم منهم
+for name in "Ahmed" "Ali" "Sara"; do
+    echo "Hello $name"
+done
+#* ------------------------------ >>
+# * >> نستخدمها لعمل loob علي الملفات الي موجوده في مكان الاسكربت
+# for i in * ;do echo "file $i";done >> نفس الكود علي سطر واحد
+for i in * 
+do
+  echo "File : $i"
+done
+#* ------------------------------ >>
+# هنا عملنا loob علي الارقام الزوجية الاقل او تساوي 20 
+for i in {2..100..2} ; do
+  if [[ $i -le 20 ]] ;then
+      echo "Num : $i"
+  fi
+done
+#? ------------------------------------- 26 -------------------------------------
+# Video 26 => https://www.youtube.com/watch?v=vJzbxndi8G4&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=26
+
+#                          >>>>>>>>> For Loop part 2 <<<<<<<<<<
+#? ------------------------------------- 26 -------------------------------------
+# ((i=1 ; i<=5 ; i++)) >> ودي طريقه ثانيه برضو لاستخدام ال loob ماخوذه من لغه C
+# i=1 >> قيمه ال loob
+# i<=5 >> الشرط الي هيتم علي اساه ال loob
+# i++ >> هيزود كام علي قيمه ال loob في كل مره 
+# sleep 2 >> تستخدم لتعطيل طباعه العناصر بالثواني بدل ما يطبع كله مره واحد بيوقف ثنيتين
+for (( i=1 ; i<=5 ; i++ ));do
+    echo "i : $i"
+    sleep 2
+done
+#* ------------------------------ >>
+# دي اسكربت لو الملف بينتهي ب tar.gz امسحه
+for file in * ;do
+  if [[ $file == *tar.gz ]];then 
+    rm -r $file
+  fi
+done
+#? ------------------------------------- 27 -------------------------------------
+# Video 27 => https://www.youtube.com/watch?v=MosmKd2bnqQ&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=27
+
+#                          >>>>>>>>> For Loop part 3 <<<<<<<<<<
+#? ------------------------------------- 27 -------------------------------------
+# لو الرقم باقي القسمه بتاعه يساوي 0 يبقي دا رقم زوجي غير كدا يبقي فردي
+for num in {1..50} ; do
+  if [[ $((num%2)) -eq 0 ]] ;then
+    echo "Odd Num : $num"
+  else
+    echo "Even Num : $num"
+  fi
+done
+#* ------------------------------ >>
+echo
+for num in {2..50..2} ; do
+    echo "Odd Num : $num"
+done
+#* ------------------------------ >>
+# t~ Continue تستخدم لتفادي شي معين او عنصر معين
+for num in {1..50} ; do
+  if [[ $((num%2)) -eq 1 ]] ;then
+  continue
+  fi
+    echo "Num : $num"
+done
+#* ------------------------------ >>
+# t~ Break تستخدم للتوقف عند عنصر معين سوف توقف ال Loop عند تحقق الشرط يوقف ال loob
+for num in {1..50} ; do
+  if [[ $((num%2)) -eq 0 ]] ;then
+  break
+  fi
+    echo "Num : $num"
+done
+#? ------------------------------------- 28 -------------------------------------
+# Video 28 => https://www.youtube.com/watch?v=SWDrATjXYlo&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=28
+
+#                          >>>>>>>>> While Loop part 1 <<<<<<<<<<
+#? ------------------------------------- 28 -------------------------------------
+# while >> طالما فيه شرط متحقق (True).	أول ما الشرط يتحول لـ False بتقف
+# هذه هي طريقه استخدام ال while 
+# i=$((++i)) >> دي كدا معنها طول ما ال i لسه اقل من 10 زود 1
+i=1
+while [ $i -le 10 ];do
+  echo "i : $i"
+  i=$((++i)) # OLD
+# i=$((i+1)) # OLD
+done
+#* ------------------------------ >>
+# ((i+=1)) >> دي عنها زود 1 برضو بس الاحدث 
+# ي الطريقة الأسرع، الأنظف، والأكثر استخداماً في الـ Bash [4]
+i=1
+while [ $i -le 10 ];do
+  echo "i : $i"
+    ((i+=1)) # Good 
+done
+#* ------------------------------ >>
+# ((i++)) >> دي عنها زود 1 برضو بس الاحدث 
+# ي الطريقة الأسرع، الأنظف، والأكثر استخداماً في الـ Bash [4]
+i=1
+while [ $i -le 10 ];do
+  echo "i : $i"
+  ((i++)) # Good & NEW
+done
+#* ------------------------------ >>
+counter=1
+while [ $counter -le 5 ]; do
+    echo "Count is $counter"
+    ((counter++)) # زيادة العداد بمقدار 1
+done
+#* ------------------------------ >>
+# لقراء عناصر ملف بالكامل وهيقف اول ما العناصر الي جوه تخلص
+while read -r line; do
+    echo "Line : $line"
+done < "myfile.txt"
+#? ------------------------------------- 29 -------------------------------------
+# Video 29 => https://www.youtube.com/watch?v=l8Y4jYIZlvY&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=29
+
+#                          >>>>>>>>> While Loop part 2 <<<<<<<<<<
+#? ------------------------------------- 29 -------------------------------------
+# ال2 دول نفس الفكره بالظبط ولكن الثانيه افضل واسهل واسرع
+x=1; while [ $x -le 5 ];do echo "Welcome $((x++)) Time";done # OLD Way
+#* ------------------------------ >>
+x=1; while [ $x -le 5 ];do echo "Welcome $x Time" ;((x++));done # BEST Way
+#* ------------------------------ >>
+x=1
+while [ $x -le 5 ]
+do
+    echo "Welcome $((x++)) Time"
+done
+#* ------------------------------ >>
+x=1
+while [ $x -le 5 ]
+do
+    echo "Welcome $x Time"
+    (( x++ ))
+done
+#* ------------------------------ >>
+# دي اسكربت بيقعد يضرب الرقم في الرقم الي يساوي ثم الي اقل منه لحد ما يوصل لل 0
+fact=1
+num=$1
+while [ $num -gt 0 ]
+do
+    fact=$(( $fact * $num ))
+    # num=$(($num-1))
+    num=$((--num))
+done
+echo $fact
+#? ------------------------------------- 30 -------------------------------------
+# Video 30 => https://www.youtube.com/watch?v=S3nkMGKcsSo&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=30
+
+#                          >>>>>>>>> Until Loop <<<<<<<<<<
+#? ------------------------------------- 30 -------------------------------------
+# until >> تستمر في التكرار طالما أن الشرط خطأ (False)، وتتوقف فوراً أول ما الشرط يصبح صحيحاً (True).
+x=5
+until [ $x -eq 10 ] ;do
+    echo "until ${i}"
+done
+#* ------------------------------ >>
+# set -x >> دي نستخدمها علشان يعمل Debug علي الكود من او هنا 
+# set +x >> وقف ال Debug عند الحته دي
+set -x
+x=5
+until [ $x -eq 10 ] ;do
+    echo "until number : ${x}"
+    ((x++))
+done
+set +x
+#* ------------------------------ >>
+# عند استخدام ال loob بهذه الطريقه يطبع العناصر ويقطعها من خلال ال Space 
+str="Hello Python And Bash"
+for i in str ;do
+    echo $i
+done
+#* ------------------------------ >>
+#! IFS="-" >> نستخدمها علشان نخلي يقطع ال string علي حسب ما اريد انا بعلامه ال -
+IFS="-"
+str="Hello Python-And-Bash"
+for i in $str ;do
+    echo $i
+done
+#? ------------------------------------- 31 -------------------------------------
+# Video 31 => https://www.youtube.com/watch?v=3O_Eud9teNc&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=31
+
+#                          >>>>>>>>> Arrays part 1 <<<<<<<<<<
+#? ------------------------------------- 31 -------------------------------------
+#! تم شرح فيها ما هي ال array بشكل عام 
+#? ------------------------------------- 32 -------------------------------------
+# Video 32 => https://www.youtube.com/watch?v=ZJa9_3cTQkA&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=32
+
+#                          >>>>>>>>> Arrays part 2 <<<<<<<<<<
+#? ------------------------------------- 32 -------------------------------------
+# ${distros} => Ubuntu >> طباعه اول عنصر
+# ${distros[@]} >> هذه الطريقة معنها طباعه جميع عناصر ال array ولازم المتغير يكون بداخل الاقواس {}
+# ${distros[1]} => Fedora >> كدا هيطبع العنصر الثاني 
+# ${distros[-1]} => Debian >> كدا هيطبع العنصر الاخير
+# ${#distros[@]} => 3 >> لطباعه عدد عناصر ال array نستخدم ال # بهذا الشكل 
+# ${#distros[0]} => 6 >> تستخدم لطباعه عدد الحروف بتاع العنصر ال index بتاعه 1
+declare -a distros=("Ubuntu" "Fedora" "Debian")
+distros=("Ubuntu" "Fedora" "Debian")
+echo ${distros}
+echo ${distros[@]}
+echo ${distros[1]}
+echo ${distros[-1]}
+echo ${#distros[@]}
+echo ${#distros[1]}
+#* ------------------------------ >>
+# ${#string} >> نستخدم ال # هنا كدا علشان يطبع عدد حروف المتغير دا
+string="ntfsv6"
+echo ${#string}
+#? ------------------------------------- 33 -------------------------------------
+# Video 33 => https://www.youtube.com/watch?v=P4GYb96h7Ko&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=33
+
+#                          >>>>>>>>> Arrays part 3 <<<<<<<<<<
+#? ------------------------------------- 33 -------------------------------------
+# ودي طريقه برضو اخر في عمل ال array 
+declare -a arr
+arr[0]="Tester1"
+arr[1]="Faild2"
+echo ${arr[@]}
+#* ------------------------------ >>
+# [3]="Tester1" >> بالشكل دا كدا احنا حددنا العنصر دا يبقي في ال index الكام
+declare -a arr=([3]="Tester1" [4]="Faild2")
+echo ${arr[@]}
+#* ------------------------------ >>
+# arr+= >> هذه الطريقه تستخدم لاضافه عناصر جديده علي االعناصر القديمة
+declare -a arr=("Tester1" "Faild2" "Succ")
+echo ${arr[@]}
+arr+=("Helper" "Manger")
+echo ${arr[@]}
+#* ------------------------------ >>
+# declare -a >> لا تقبل عمل ال Index بهذه المسميات لازم ارقام
+declare -a arr=([first]="Te" [sec]="Fi")
+echo ${arr[@]}
+#* ------------------------------ >>
+# declare -A >> ولكن هذه الطريقه تقبل المسميات بدل الارقام في ال index
+declare -A arr=([first]="Te" [sec]="Fi")
+echo ${arr[first]} # Te
+#? ------------------------------------- 34 -------------------------------------
+# Video 34 => https://www.youtube.com/watch?v=CAa3ZaBPxcg&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=34
+
+#                          >>>>>>>>> Arrays part 4 <<<<<<<<<<
+#? ------------------------------------- 34 -------------------------------------
+# echo "${arr[-1]}" >> الطريقة العاديه لطباعه اخر عنصر
+#t~ لو عايز تجيب قيمة الخانة الأخيرة ككلام عادي: استخدم ${arr[-1]}.
+# echo "${arr[@]: -1}" >> هذه الطريقه ايضا تستخدم لطباعه اخر عنصر برضو
+# لو عايز تقص حتة من المصفوفة من الآخر وترجعها كـ مصفوفة مصغرة: استخدم
+arr=("Tester1" "Faild2" "Succ" "Log" "Run")
+echo "${arr[-1]}"
+echo "${arr[@]: -1}"
+#* ------------------------------ >>
+# "${arr[@]:2}" >split> كدا هيعمل قطع من اول ال index 2 الي النهاية
+declare -a arr=("Tester1" "Faild2" "Succ" "Log" "Run")
+echo "${arr[@]:2}" # Faild2 Succ Log Run
+#* ------------------------------ >>
+# "${arr[@]:1:2}" >> كدا هقطع من ال index 1 , و 2 index فقط بعده
+declare -a arr=("Tester1" "Faild2" "Succ" "Log" "Run")
+echo "${arr[@]:1:2}" # Faild2 Succ
+#* ------------------------------ >>
+# "${arr[@]:1:3}" >> كدا هيقطع من Index 1 و ثلاث عناصر فقط بعده 
+declare -a arr=("Tester1" "Faild2" "Succ" "Log" "Run")
+echo "${arr[@]:1:3}" # Faild2 Succ Log
+#* ------------------------------ >> OUT OF COURSE
+# ${!my_array[@]} >> للحصول علي ارقام ال index بتاع كل عنصر 
+declare -a my_array=( "Hydrogen" "Helium" "Lithium" "Beryllium" )
+echo ${!my_array[@]} # 0 1 2 3
+#* ------------------------------ >>
+# [@] >> دي معنها ان كل عنصر يبقي لوحده يعني لمه بيقطعهم بيبقي العناصر بتاعتهم عمله زي ال array
+# [*] >> امال دي بيخلي كل العناصر اكنها عنصر string واحد
+my_array=( "Hydrogen Round" "Helium join" "Lithium Eng" "Beryllium Windy" 5 7 9 10 )
+for i in "${my_array[@]}"
+do
+    echo "Index : $i"
+done
+echo "================================================"
+for i in "${my_array[*]}"
+do
+    echo "Index : $i"
+done
+#? ------------------------------------- 35 -------------------------------------
+# Video 35 => https://www.youtube.com/watch?v=vcgcjsCeUkw&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=35
+
+#                          >>>>>>>>> Arrays part 5 <<<<<<<<<<
+#? ------------------------------------- 35 -------------------------------------
+# arr+=("Done" "Fun") >> دي طريقه اضافه العناصر وهي ال appendوالطريقه دي بتضيف العناصر من النهاية
+arr=("Tester1" "Faild2")
+arr+=("Done" "Fun")
+echo ${arr[@]}
+#* ------------------------------ >>
+# arr=("Done" "Fun" ${arr[@]}) >> تستخدم بهذه الطريقه لاضافه عناصر الاول بعد كدا تجيب العناصر القديمه في النهاية
+arr=("Tester1" "Faild2")
+arr=("Done" "Fun" ${arr[@]})
+echo ${arr[@]}
+# * ------------------------------ >>
+# arr=("${arr[@]:0:$insert}" "insertVal" "${arr[@]:0:$insert}") >> هذه طريقه عمل ال Insert في منتصف العناصر
+arr=(a b c d)
+insert=2
+arr=("${arr[@]:0:$insert}" "insertVal" "${arr[@]:0:$insert}")
+echo ${arr[@]}
+# * ------------------------------ >>
+# ${!arr[@]} >> تستخدم لطباعه ال index بتاع العناصر
+arr=(a b c d)
+echo ${!arr[@]}
+#* ------------------------------ >>
+# unset -v 'arr[0]' >> نستخدم ال unset لحذف عنصر من خلال ال index بتاعه بشكل طبيعي جدا
+arr=(a b c d)
+echo ${arr[@]}
+echo ${!arr[@]}
+echo "================================================ After Remove Index 0"
+unset -v 'arr[0]'
+echo ${arr[@]}
+echo ${!arr[@]}
+#* ------------------------------ >>
+# arr3=("${arr1[@]}" "${arr2[@]}") >> هذه الطريقه لدمج 2 array في array واحده جديدة
+arr1=(a b c d)
+arr2=(1 2 3 4)
+arr3=("${arr1[@]}" "${arr2[@]}")
+echo ${arr3[@]}
+#* ------------------------------ >>
+declare -A arr=([first]=One [second]=Two [third]=Three)
+echo ${arr[@]}
+echo ${!arr[@]}
+#* ------------------------------ >> loob with for
+# ودي طريقة عمل ال loob بشكل تلقائي علي حسب عدد عناصر ال array
+arr1=(a b c d)
+for (( i=0 ; i<${#arr1[@]} ; i++ ));do
+    echo "Item : ${arr1[$i]} > index : $i"
+done
+#* ------------------------------ >> loob with while
+arr1=(a b c d)
+i=0
+while [ $i -le ${#arr[@]}] ;do
+    echo ${arr1[$i]}
+    ((i++))
+done
+#* ------------------------------ >> loob with until
+arr1=(a b c d)
+i=0
+until [ $i -ge ${#arr1[@]} ] ;do
+    echo ${arr1[$i]}
+    ((i++))
+done
+#? ------------------------------------- 36 -------------------------------------
+# Video 36 => https://www.youtube.com/watch?v=0gLxTbCULto&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=36
+
+#                          >>>>>>>>> Arrays part 6 <<<<<<<<<<
+#? ------------------------------------- 36 -------------------------------------
