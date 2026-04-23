@@ -1560,3 +1560,195 @@ done
 
 #                          >>>>>>>>> Arrays part 6 <<<<<<<<<<
 #? ------------------------------------- 36 -------------------------------------
+arr1=(a b c d)
+for i in ${!arr1[@]};do
+    echo "Items : ${arr1[$i]} > index : $i"
+done
+
+for (( i=0 ; i<${#arr1[@]} ; i++ ));do
+    echo "Item : ${arr1[$i]} > index : $i"
+done
+#* ------------------------------ >>
+# read -a >> نستخدم هذه الطريقه لاخذ عناصر array من المستخدم
+echo -n "Enter Your Array : " # 1 2 3 4 5
+read -a arrays
+for key in ${!arrays[@]} ; do
+    echo "Item : ${arrays[$key]} > index : $key" 
+done
+#* ------------------------------ >>
+while read line ;do
+    # arr=("${arr[@]}" $line) # OLD
+    arr+=("${line}") # Prof GooD
+    break
+done
+echo "${arr[-1]}"
+#* ------------------------------ >> OUT OF COURSE
+# لو عدد ال array وصل لحد 6 او اكثر وقف ال while
+while read -a my_array; do
+    arr+=("${my_array}")
+    echo "Number : ${#arr[@]}"
+    echo "First Arg: ${arr}"
+    echo "Last Arg: ${arr[-1]}"
+    echo "All Array : ${arr[@]}"
+    if [ ${#arr[@]} -ge 6 ] ;then
+        echo "While Is Stoped.."
+        break
+    fi
+done
+#* ------------------------------ >>
+# ./bash.sh 1 2 3 4 5
+arr=($@)
+echo "File $0 .. Args : ${arr[@]}"
+#? ------------------------------------- 37 -------------------------------------
+# Video 37 => https://www.youtube.com/watch?v=fDIKIFBUu14&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=37
+
+#                          >>>>>>>>> Function part 1 <<<<<<<<<<
+#? ------------------------------------- 37 -------------------------------------
+# 1 ) my_func() { task }
+# 2 ) function my_func { task }
+# 3 ) function my_func() { task }
+# ----------------------------
+# 1 ) my_func(){ task } >> هذه طريقه عمل ال function
+# my_func >> وكدا احنا ندهنها عليها تحت
+my_func() {
+    echo "Welcome to Bash functions!"
+}
+my_func
+#? ------------------------------------- 38 -------------------------------------
+# Video 38 => https://www.youtube.com/watch?v=m8WleQNY8Pw&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=38
+
+#                          >>>>>>>>> Function part 2 <<<<<<<<<<
+#? ------------------------------------- 38 -------------------------------------
+# $1.$2.etc.. >> دي معنها انك لمه تيجي تشغل ال function بتحط جنبها ال arg الي انت هتستخدمه جوه ال func
+# fun "Hany" 22 "Male" >> زي كدا بالظبط الي بنعلمه جنب اسم الاسكربت
+fun(){
+    echo "=================== Info Students ==================="
+    echo "Hello $1"
+    echo "Your Age : $2"
+    echo "Gender : $3"
+}
+name="Gabber"
+age=44
+gender="unknow"
+fun "${name}" "${age}" "${gender}"
+fun "Hany" 22 "Male"
+fun "Jony" 27 "Male"
+fun "Sara" 22 "Female"
+#? ------------------------------------- 39 -------------------------------------
+# Video 39 => https://www.youtube.com/watch?v=Szbg19Md62s&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=39
+
+#                          >>>>>>>>> Function part 3 <<<<<<<<<<
+#? ------------------------------------- 39 -------------------------------------
+# $@ >> استخدم هذه داخل ال function تعني ان كل ال arg الي هتحطها في ال function .fun "Jony" 27 "Male".
+fun(){
+    echo "=================== Info User ==================="
+    echo "Hello $1"
+    echo "Your Age : $2"
+    echo "Gender : $3"
+    for i in "$@"
+    do
+        echo "Arg : $i"
+    done
+}
+fun "Jony" 27 "Male"
+#* ------------------------------ >>
+# طبعا في bash المتغيرات داخل ال function بتبقي global بشكل تلقائي يعني اقدر استخدمها في اي مكان
+# local namevar >> نستخدم local علشان اخلي المتغير دا يتم استخدمه بداخل ال function فقط
+greet(){
+    local name="$1"
+    echo "${name} Is Here."
+}
+name="Bad Notes"
+greet "Good Notes"
+echo "Hello ${name}"
+#* ------------------------------ >>
+# ${1:-"Anonymous"} >> استخدام هذه الطريقه كدا بنحط قيمه افتراضيه علشان لو شغلنا ال function من غير ما نحط args
+# ${2:-0} >> معنها لو محطتش قيمه لل arg2 القيمة الافتراضية هي 0
+greet(){
+    local per=${1:-"Anonymous"}
+    local exp=${2:-0}
+    echo "Hello '${per}' Your Exp Is : '${exp}'"
+}
+greet
+#* ------------------------------ >>
+# per="${1:?"Please Put Arguments Values"}" >> نستخدم ? لطباعه رسالة خطاء لو نسيت تحط قيمه ل function لما تشغلها
+greet(){
+    per="${1:?"Please Put Arguments Values"}"
+    echo "Hello '${per}'"
+}
+greet
+#* ------------------------------ >>
+# per2="${2:?"Please Put Arguments Values"}" >> دي كدا رساله خطاء لل arg2
+greet(){
+    per="${1:?"Please Put Arguments Values"}"
+    per2="${2:?"Please Put Arguments Values"}"
+    echo "Hello '${per}' & '${per2}'"
+}
+greet "Admin"
+#? ------------------------------------- 40 -------------------------------------
+# Video 40 => https://www.youtube.com/watch?v=r6oJcNtToIk&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=40
+
+#                          >>>>>>>>> Function part 4 <<<<<<<<<<
+#? ------------------------------------- 40 -------------------------------------
+# 1 ) my_func() { task }
+# 2 ) function my_func { task }
+# 3 ) function my_func() { task }
+# ----------------------------
+# 1 ) my_func(){ task } >> هذه طريقه عمل ال function
+# my_func >> وكدا احنا ندهنها عليها تحت
+my_func() {
+    echo "Welcome to Bash functions!"
+}
+my_func
+#* ------------------------------ >>
+# 2 ) function my_func { task } >> هذه طريقه عمل ال function
+# my_func >> وكدا احنا ندهنها عليها تحت
+function my_func {
+    echo "Welcome to Bash functions!"
+}
+my_func
+#* ------------------------------ >>
+# 3 ) function my_func() { task } >> هذه طريقه عمل ال function
+# my_func >> وكدا احنا ندهنها عليها تحت
+function my_func() {
+    echo "Welcome to Bash functions!"
+}
+my_func
+#* ------------------------------ >>
+# hello $1 $2 $3 >> عند استدعاء ال function ممكن نحط ال args الي جنب اسم الاسكربت
+#* ./bash.sh Hany 23 Male
+# "$#" >> بيطبع عدد ال arg الي حطتيها لل function
+hello(){
+    echo "Hello : $1"
+    echo "Age : $2"
+    echo "Gender : $3"
+    echo "$@"
+    echo "$#"
+}
+hello "$1" $2 $3
+#* ------------------------------ >>
+# return $sum >> كدا احنا خلينا ال function دي بترجع قيمة ونقدر نستخدمها في اي مكان
+#! $? >> تستخدم لارجاع اخر قيمة return حصلت في الاسكربت ودي طبعا طريقه غير صحيحه
+# لان استخدام ال return بيكون علشان تشوف الكود صح ام خطاء 
+# بتاخد من 0 ال 255
+# الرقم 0 يعني أن الأمر نجح وبدون أخطاء.
+# الأرقام من 1 إلى 255 تعني حدوث خطأ ما (أو تُستخدم لتمرير حالة معينة).
+sums(){
+    sum=$(( $1 + $2 ))
+    return $sum
+}
+sums 200 100
+echo $?
+#* ------------------------------ >>
+# هذه هي الطريقه الصحيحه لاخذ قيمه معينه من function ويمكنك التحكم فيها في اي حته
+sums(){
+    sum=$(( $1 + $2 ))
+    echo $sum
+}
+total=$( sums 200 100 )
+echo $total
+#? ------------------------------------- 41 -------------------------------------
+# Video 41 => https://www.youtube.com/watch?v=XGhGkCVVErA&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=41
+
+#                          >>>>>>>>> local vs export vs default <<<<<<<<<<
+#? ------------------------------------- 41 -------------------------------------

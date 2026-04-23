@@ -1324,3 +1324,160 @@
 
 #                          >>>>>>>>> Arrays part 6 <<<<<<<<<<
 #? ------------------------------------- 36 -------------------------------------
+# arr1=(a b c d)
+# for i in ${!arr1[@]};do
+#     echo "Items : ${arr1[$i]} > index : $i"
+# done
+
+# for (( i=0 ; i<${#arr1[@]} ; i++ ));do
+#     echo "Item : ${arr1[$i]} > index : $i"
+# done
+#* ------------------------------ >>
+# echo -n "Enter Your Array : "
+# read -a arrays
+# for key in ${!arrays[@]} ; do
+#     echo "Item : ${arrays[$key]} > index : $key" 
+# done
+#* ------------------------------ >>
+# while read line ;do
+#     arr=("${arr[@]}" $line)
+#     arr+=("${line}") # Prof GooD
+#     break
+# done
+# echo "${arr[-1]}"
+#* ------------------------------ >> OUT OF COURSE
+# while read -a my_array; do
+#     arr+=("${my_array}")
+#     echo "Number : ${#arr[@]}"
+#     echo "First : ${arr}"
+#     echo "Last : ${arr[-1]}"
+#     echo "ALl : ${arr[@]}"
+#     if [ ${#arr[@]} -ge 6 ] ;then
+#         echo "While Is Stoped.."
+#         break
+#     fi
+# done
+#* ------------------------------ >>
+# ./bash.sh 1 2 3 4 5 
+# arr=($@)
+# echo "File $0 .. Args : ${arr[@]}"
+#? ------------------------------------- 37 -------------------------------------
+# Video 37 => https://www.youtube.com/watch?v=fDIKIFBUu14&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=37
+
+#                          >>>>>>>>> Function part 1 <<<<<<<<<<
+#? ------------------------------------- 37 -------------------------------------
+# read -p "Enter Number One : " num1
+# read -p "Enter Number Two : " num2
+# sum(){
+#     summ=$(( $num1 + $num2 ))
+#     echo "Result : $summ"
+# }
+# sum
+#* ------------------------------ >>
+# my_func() {
+#     echo "Welcome to Bash functions!"
+# }
+# my_func
+#? ------------------------------------- 38 -------------------------------------
+# Video 38 => https://www.youtube.com/watch?v=m8WleQNY8Pw&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=38
+
+#                          >>>>>>>>> Function part 2 <<<<<<<<<<
+#? ------------------------------------- 38 -------------------------------------
+# fun(){
+#     echo "=================== Info Students ==================="
+#     echo "Hello $1"
+#     echo "Your Age : $2"
+#     echo "Gender : $3"
+# }
+# name="Gabber"
+# age=44
+# gender="unknow"
+# fun "${name}" ${age} "${gender}"
+# fun "Hany" 22 "Male"
+# fun "Jony" 27 "Male"
+# fun "Sara" 22 "Female"
+#? ------------------------------------- 39 -------------------------------------
+# Video 39 => https://www.youtube.com/watch?v=Szbg19Md62s&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=39
+
+#                          >>>>>>>>> Function part 3 <<<<<<<<<<
+#? ------------------------------------- 39 -------------------------------------
+# fun(){
+#     echo "=================== Info User ==================="
+#     echo "Hello $1"
+#     echo "Your Age : $2"
+#     echo "Gender : $3"
+#     for i in "$@"
+#     do
+#         echo "Arg : $i"
+#     done
+# }
+# fun "Jony" 27 "Male"
+#* ------------------------------ >>local
+# greet(){
+#     local name="$1"
+#     echo "${name} Is Here."
+# }
+# name="Bad Notes"
+# greet "Good Notes"
+# echo "Print ${name}"
+#* ------------------------------ >>
+# greet(){
+#     local per="${1:-"null"}"
+#     local exp="${2:-"null"}"
+#     echo "Hello '${per}' Your Exp Is : '${exp}'"
+# }
+# greet "Sudo User" 2
+#* ------------------------------ >>
+# greet(){
+#     per="${1:?"Please Put Arguments Values"}"
+#     per2="${2:?"Please Put Arguments Values"}"
+#     echo "Hello '${per}' & '${per2}'"
+# }
+# greet "Admin"
+#? ------------------------------------- 40 -------------------------------------
+# Video 40 => https://www.youtube.com/watch?v=r6oJcNtToIk&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=40
+
+#                          >>>>>>>>> Function part 4 <<<<<<<<<<
+#? ------------------------------------- 40 -------------------------------------
+# my_func() {
+#     echo "Welcome to Bash functions!"
+# }
+# my_func
+#* ------------------------------ >>
+# function my_func {
+#     echo "Welcome to Bash functions!"
+# }
+# my_func
+#* ------------------------------ >>
+# function my_func() {
+#     echo "Welcome to Bash functions!"
+# }
+# my_func
+#* ------------------------------ >>
+# hello(){
+#     echo "Hello : $1"
+#     echo "Age : $2"
+#     echo "Gender : $3"
+#     echo "$@"
+#     echo "$#"
+# }
+# hello "$1" $2 $3
+#* ------------------------------ >>
+# sums(){
+#     sum=$(( $1 + $2 ))
+#     return $sum
+# }
+# sums 200 100
+# echo $?
+# * ------------------------------ >>
+# sums(){
+#     sum=$(( $1 + $2 ))
+#     echo $sum
+# }
+# total=$(sums 200 100)
+# echo $total
+#? ------------------------------------- 41 -------------------------------------
+# Video 41 => https://www.youtube.com/watch?v=XGhGkCVVErA&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=41
+
+#                          >>>>>>>>> local vs export vs default <<<<<<<<<<
+#? ------------------------------------- 41 -------------------------------------
