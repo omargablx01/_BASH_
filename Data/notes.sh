@@ -1752,3 +1752,22 @@ echo $total
 
 #                          >>>>>>>>> local vs export vs default <<<<<<<<<<
 #? ------------------------------------- 41 -------------------------------------
+#t~ export >> بتخلي المتغير يبقي global يعني اقدر اشوفه في اي جته داخل ال bash script
+# وبيحفظ فيمه المتغير داخل ال terminal الي انت فاتحها
+# local >> تستخدم علشان نخلي المتغير يمكن استخدامه داخل ال function فقط
+# ومينفعش نستخدم ال local دي بره ال function
+# . bash.sh >> علشان نقدر نستخدم المتغيرات الي عملنها جوه الاسكربت في ال terminal نشغل الاسكربت بهذا الشكل
+#! declare -f function_name >> تستخدم في ال terminal علشان تعرضلك محتوي function معينه
+function_name(){
+    local name2="From Function"
+    echo "Hello ${name2}"
+}
+export name1="From Global"
+name3="From File"
+function_name
+echo "Hello : ${name1}"
+#? ------------------------------------- 42 -------------------------------------
+# Video 42 => https://www.youtube.com/watch?v=-VhkKbW4pFc&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=42
+
+#                          >>>>>>>>> Exit Codes <<<<<<<<<<
+#? ------------------------------------- 42 -------------------------------------

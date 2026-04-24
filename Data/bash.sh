@@ -1481,3 +1481,16 @@
 
 #                          >>>>>>>>> local vs export vs default <<<<<<<<<<
 #? ------------------------------------- 41 -------------------------------------
+# function_name(){
+#     local name2="From Function"
+#     echo "Hello ${name2}"
+# }
+# export name1="From Global"
+# name3="From File"
+# function_name
+# echo "Hello : ${name1}"
+#? ------------------------------------- 42 -------------------------------------
+# Video 42 => https://www.youtube.com/watch?v=-VhkKbW4pFc&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=42
+
+#                          >>>>>>>>> Exit Codes <<<<<<<<<<
+#? ------------------------------------- 42 -------------------------------------
