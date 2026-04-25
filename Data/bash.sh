@@ -1494,3 +1494,52 @@
 
 #                          >>>>>>>>> Exit Codes <<<<<<<<<<
 #? ------------------------------------- 42 -------------------------------------
+# ls -lah
+# rmdir ntfsv6
+# if [ $? -ne 0 ];then
+#     echo "Error rmdir ntfsv6"
+#     exit
+# else
+#     echo "File ntfsv6 Creating.."
+#     mkdir ntfsv6
+#     ls -lah
+# fi
+#? ------------------------------------- 43 -------------------------------------
+# Video 43 => https://www.youtube.com/watch?v=hd6QiLH0ifQ&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=43
+
+#                          >>>>>>>>> Internal Variables part 1 <<<<<<<<<<
+#? ------------------------------------- 43 -------------------------------------
+# echo "File Name : $0"
+
+# echo "File Name : $0 ,, Arg One : $1 ,, Arg Two : $2"
+
+# echo $# # دي كدا هتطبع عدد ال arg الي جنب اسم الاسكربت
+
+# echo $@
+
+# echo $*
+
+# echo $?
+
+# echo $$
+
+# echo $!
+
+# echo $_
+
+# echo $-
+
+# IFS="," # >> كدا تم تغير المسطرة الي ,
+
+# echo $PATH
+
+# echo $PWD
+#? ------------------------------------- 44 -------------------------------------
+# Video 44 => https://www.youtube.com/watch?v=N39Ox3tndOI&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=44
+
+#                          >>>>>>>>> Internal Variables part 2 <<<<<<<<<<
+#? ------------------------------------- 44 -------------------------------------
+function_name(){
+    echo "$FUNCNAME"
+}
+function_name
