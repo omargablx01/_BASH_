@@ -1539,7 +1539,18 @@
 
 #                          >>>>>>>>> Internal Variables part 2 <<<<<<<<<<
 #? ------------------------------------- 44 -------------------------------------
+# function_name(){
+#     echo "$FUNCNAME"
+# }
+# function_name
+# * ------------------------------ >>
 function_name(){
-    echo "$FUNCNAME"
+    echo "This Is Name Current Function Name : ${FUNCNAME[0]}"
+    echo "This Is name Import Function : ${FUNCNAME[1]}"
 }
-function_name
+
+import_func(){
+    function_name
+    echo "This Is name Import Function import_func : ${FUNCNAME[1]}"
+}
+import_func

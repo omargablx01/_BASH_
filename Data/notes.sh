@@ -1837,7 +1837,19 @@ echo $PWD
 #                          >>>>>>>>> Internal Variables part 2 <<<<<<<<<<
 #? ------------------------------------- 44 -------------------------------------
 # $FUNCNAME >> تستخدم لعرض اسم ال function المستخدمة او الي انت موجود فيها
-name_fun(){
+function_name(){
     echo "$FUNCNAME"
 }
-name_fun
+function_name
+# * ------------------------------ >>
+# ${FUNCNAME[0]} >> هو اسم ال function ذات نفسها function_name
+# ${FUNCNAME[1]} >> تعني اسم الدالة التي استدعت الدالة الحالية (الدالة "الأم" أو الـ Caller).
+function_name(){
+    echo "This Is Name Current Function Name : ${FUNCNAME[0]}"
+    echo "This Is name Import Function : ${FUNCNAME[1]}"
+}
+import_func(){
+    echo "This Is name Import Function test : ${FUNCNAME[1]}"
+    function_name
+}
+import_func
