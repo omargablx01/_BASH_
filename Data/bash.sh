@@ -1544,13 +1544,39 @@
 # }
 # function_name
 # * ------------------------------ >>
-function_name(){
-    echo "This Is Name Current Function Name : ${FUNCNAME[0]}"
-    echo "This Is name Import Function : ${FUNCNAME[1]}"
-}
+# function_name(){
+#     echo "This Is Name Current Function Name : ${FUNCNAME[0]}"
+#     echo "This Is name Import Function : ${FUNCNAME[1]}"
+# }
 
-import_func(){
-    function_name
-    echo "This Is name Import Function import_func : ${FUNCNAME[1]}"
-}
-import_func
+# import_func(){
+#     function_name
+#     echo "This Is name Import Function import_func : ${FUNCNAME[1]}"
+# }
+# import_func
+# * ------------------------------ >>
+# echo $UID
+# * ------------------------------ >>
+# read -p '> ' 
+# echo "Last REPLY : $REPLY"
+# * ------------------------------ >>
+# ls
+# rm -r ll
+# echo $?
+# echo $PIPESTATUS
+# * ------------------------------ >>
+# echo $RANDOM
+# echo $(( $RANDOM % 11 ))
+# min=1
+# max=15
+# echo $(((RANDOM % $((max - min))) + $min ))
+# echo $(( ( $RANDOM % $max ) + $min ))
+# echo $(( ( RANDOM % 41 )  + 10 ))
+# * ------------------------------ >>
+# shuf -i 1-10 -n 6 -r
+# shuf -e "HI" "Welcome" "NICE" "HELP" -n 2
+#? ------------------------------------- 45 -------------------------------------
+# Video 45 => https://www.youtube.com/watch?v=PT458ialDoI&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=45
+
+#                          >>>>>>>>> Select Keyword <<<<<<<<<<
+#? ------------------------------------- 45 -------------------------------------
