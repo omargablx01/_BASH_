@@ -1638,3 +1638,10 @@
 #       echo "Invalid option $REPLY";;
 #   esac
 # done
+#? ------------------------------------- 47 -------------------------------------
+# Video 47 => https://www.youtube.com/watch?v=6lhjXjmM29I&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=47
+
+#                          >>>>>>>>> Getopts & Shift <<<<<<<<<<
+#? ------------------------------------- 47 -------------------------------------
+shift 2
+echo $1 $2 $3 $4
