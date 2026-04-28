@@ -1580,5 +1580,61 @@
 
 #                          >>>>>>>>> Select Keyword <<<<<<<<<<
 #? ------------------------------------- 45 -------------------------------------
+# select os in "Windows" "Linux" "Mac";do
+#     echo "You Choose $os OS"
+#     break
+# done
+# * ------------------------------ >>
+# PS3="Chosse Os : "
+# select os in "Windows" "Linux" "Mac" "Quit";do
+#     if [ $os = "Quit" ];then
+#         echo "Select Quit.."
+#         break
+#     fi
+#     echo "You Choose $os OS"
+# done
+#? ------------------------------------- 46 -------------------------------------
+# Video 46 => https://www.youtube.com/watch?v=GWiKy9Ak1zQ&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=46
 
+#                          >>>>>>>>> Eval <<<<<<<<<<
+#? ------------------------------------- 46 -------------------------------------
+# test="date"
+# echo $test # date
+# eval $test  # Tue, Apr 28, 2026 11:12:01
+# * ------------------------------ >>
+# print="echo"
+# sums="`expr 5 + 3`"
+# echo $sums
+# eval $print $sums # echo "`expr 5 + 3`"
+# * ------------------------------ >>
+# name="Ahmed"
+# target="name"
+# echo $target 
+# eval echo \$$target
+# * ------------------------------ >>
+# calculate () {
+#   read -p "Enter the first number: " n1
+#   read -p "Enter the second number: " n2
+#   echo "$n1 $1 $n2 = $((${n1}${1}${n2}))"
+# }
 
+# PS3="Select the operation: "
+
+# select opt in add subtract multiply divide quit; do
+
+#   case $opt in
+#     add)
+#       calculate "+";;
+#     subtract)
+#       calculate "-";;
+#     multiply)
+#       calculate "*";;
+#     divide)
+#       calculate "/";;
+#     quit)
+#       echo "Quit.."
+#       break;;
+#     *)
+#       echo "Invalid option $REPLY";;
+#   esac
+# done

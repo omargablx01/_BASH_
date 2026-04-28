@@ -1890,3 +1890,81 @@ shuf -e "HI" "Welcome" "NICE" "HELP" -n 2
 
 #                          >>>>>>>>> Select Keyword <<<<<<<<<<
 #? ------------------------------------- 45 -------------------------------------
+# select namevar in etc... >> تستخدم لعرض مجموعه من الاختيارات علي حسب الترتيب بالرقم بتاعها
+# 1) Windows
+# 2) Linux
+# 3) Mac
+# #? 3 >> Mac
+select os in "Windows" "Linux" "Mac";do
+    echo "You Choose $os OS"
+    break
+done
+# * ------------------------------ >>
+# PS3 >> علشان نقدر نغير الرساله الي بتتعرض جنب الرقم الي بنختاره
+# 1) Windows
+# 2) Linux
+# 3) Mac
+# 4) Quit
+# Chosse Os : 3 >> You Choose Mac OS
+# Chosse Os : 4 >> Select Quit..
+PS3="Chosse Os : "
+select os in "Windows" "Linux" "Mac" "Quit";do
+    if [ $os = "Quit" ];then
+        echo "Select Quit.."
+        break
+    fi
+    echo "You Choose $os OS"
+done
+#? ------------------------------------- 46 -------------------------------------
+# Video 46 => https://www.youtube.com/watch?v=GWiKy9Ak1zQ&list=PLBdyyeW_Z41DykncH9zzMk8T7Rm5UlZXd&index=46
+
+#                          >>>>>>>>> Eval <<<<<<<<<<
+#? ------------------------------------- 46 -------------------------------------
+# eval >> عباره عن امر بينفذ الامر المتخزن بداخل متغير معين
+# test="date"
+# echo $test # date >> دا طبعلي الي متخزن بداخل المتغير عادي 
+# eval $test  # Tue, Apr 28, 2026 11:12:01 >> امال دا فهم انه امر terminal وهذه هي مهمه ال eval
+# * ------------------------------ >>
+# print="echo"
+# sums="`expr 5 + 3`"
+# echo $sums
+# eval $print $sums # echo "`expr 5 + 3`"
+# * ------------------------------ >>
+# الـ Bash سيرى \$ (علامة دولار مسبوقة بـ backslash)، سيعتبرها مجرد "نص" ولن ينفذها.
+# الـ Bash سيرى $target وسيقوم باستبدالها بقيمتها وهي name.
+# النتيجة النهائية: سيطبع على الشاشة النص $name كما هو، ولن يطبع "Ahmed"
+name="Ahmed"
+target="name"
+
+# تنفيذ عادي (سيطبع كلمة name)
+echo $target 
+
+# استخدام eval (سيطبع Ahmed)
+eval echo \$$target
+# * ------------------------------ >>
+# دي اله حاسبة
+calculate () {
+  read -p "Enter the first number: " n1
+  read -p "Enter the second number: " n2
+  echo "$n1 $1 $n2 = " $(bc -l <<< "$n1$1$n2")
+}
+
+PS3="Select the operation: "
+
+select opt in add subtract multiply divide quit; do
+
+  case $opt in
+    add)
+      calculate "+";;
+    subtract)
+      calculate "-";;
+    multiply)
+      calculate "*";;
+    divide)
+      calculate "/";;
+    quit)
+      break;;
+    *)
+      echo "Invalid option $REPLY";;
+  esac
+done
